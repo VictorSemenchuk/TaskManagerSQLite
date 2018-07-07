@@ -8,6 +8,7 @@
 
 #import "ListsTableViewController.h"
 #import "NewListTableViewController.h"
+#import "ListTableViewCell.h"
 
 static NSString * const kCellIdentifier = @"CellIdentifier";
 
@@ -28,7 +29,7 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
     
     self.title = @"Lists";
     self.lists = [NSMutableArray array];
-    [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:kCellIdentifier];
+    [self.tableView registerClass:ListTableViewCell.class forCellReuseIdentifier:kCellIdentifier];
     
     [self setupViews];
 }
@@ -56,12 +57,14 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.lists count];
+    //return [self.lists count];
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
-    cell.textLabel.text = @"test";
+    ListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
+    List *list = [[List alloc] initWithTitle:@"MyList" iconTitle:@"icon8" andColor:UIColor.redColor];
+    [cell installAttributesForList:list];
     return cell;
 }
 
@@ -76,6 +79,10 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 70.0;
 }
 
 @end

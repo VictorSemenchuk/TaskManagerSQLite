@@ -20,6 +20,8 @@
 		EFFADD3C20F0D29A00A775E6 /* ColorCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD3B20F0D29A00A775E6 /* ColorCollectionViewCell.m */; };
 		EFFADD3F20F0D44E00A775E6 /* ColorsCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD3E20F0D44E00A775E6 /* ColorsCollectionTableViewCell.m */; };
 		EFFADD4720F0F7D300A775E6 /* FeatureCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD4620F0F7D300A775E6 /* FeatureCollectionViewCell.m */; };
+		EFFADD4D20F1020A00A775E6 /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD4C20F1020A00A775E6 /* ListTableViewCell.m */; };
+		EFFADD5120F1053A00A775E6 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD5020F1053A00A775E6 /* List.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,10 @@
 		EFFADD3E20F0D44E00A775E6 /* ColorsCollectionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorsCollectionTableViewCell.m; sourceTree = "<group>"; };
 		EFFADD4520F0F7D300A775E6 /* FeatureCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeatureCollectionViewCell.h; sourceTree = "<group>"; };
 		EFFADD4620F0F7D300A775E6 /* FeatureCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeatureCollectionViewCell.m; sourceTree = "<group>"; };
+		EFFADD4B20F1020A00A775E6 /* ListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListTableViewCell.h; sourceTree = "<group>"; };
+		EFFADD4C20F1020A00A775E6 /* ListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListTableViewCell.m; sourceTree = "<group>"; };
+		EFFADD4F20F1053A00A775E6 /* List.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = List.h; sourceTree = "<group>"; };
+		EFFADD5020F1053A00A775E6 /* List.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = List.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,7 @@
 			children = (
 				EFFADD0C20F09C5D00A775E6 /* AppDelegate.h */,
 				EFFADD0D20F09C5D00A775E6 /* AppDelegate.m */,
+				EFFADD4E20F1052600A775E6 /* Model */,
 				EFFADD2A20F0AE4700A775E6 /* Cells */,
 				EFFADD2320F09D0000A775E6 /* Controllers */,
 				EFFADD2220F09CE900A775E6 /* Support Files */,
@@ -131,6 +138,8 @@
 				EFFADD2F20F0C0B100A775E6 /* IconsCollectionTableViewCell.m */,
 				EFFADD3D20F0D44E00A775E6 /* ColorsCollectionTableViewCell.h */,
 				EFFADD3E20F0D44E00A775E6 /* ColorsCollectionTableViewCell.m */,
+				EFFADD4B20F1020A00A775E6 /* ListTableViewCell.h */,
+				EFFADD4C20F1020A00A775E6 /* ListTableViewCell.m */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -146,6 +155,15 @@
 				EFFADD3B20F0D29A00A775E6 /* ColorCollectionViewCell.m */,
 			);
 			path = CollectionViewCells;
+			sourceTree = "<group>";
+		};
+		EFFADD4E20F1052600A775E6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EFFADD4F20F1053A00A775E6 /* List.h */,
+				EFFADD5020F1053A00A775E6 /* List.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFFADD5120F1053A00A775E6 /* List.m in Sources */,
 				EFFADD2920F0A79800A775E6 /* NewListTableViewController.m in Sources */,
 				EFFADD2620F09D3100A775E6 /* ListsTableViewController.m in Sources */,
 				EFFADD3020F0C0B100A775E6 /* IconsCollectionTableViewCell.m in Sources */,
@@ -226,6 +245,7 @@
 				EFFADD1C20F09C6000A775E6 /* main.m in Sources */,
 				EFFADD2D20F0AFC700A775E6 /* EditableTableViewCell.m in Sources */,
 				EFFADD3620F0C58200A775E6 /* CollectionTableViewCell.m in Sources */,
+				EFFADD4D20F1020A00A775E6 /* ListTableViewCell.m in Sources */,
 				EFFADD0E20F09C5D00A775E6 /* AppDelegate.m in Sources */,
 				EFFADD4720F0F7D300A775E6 /* FeatureCollectionViewCell.m in Sources */,
 			);
