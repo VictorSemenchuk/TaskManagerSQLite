@@ -1,0 +1,410 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EFFADD0E20F09C5D00A775E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD0D20F09C5D00A775E6 /* AppDelegate.m */; };
+		EFFADD1620F09C6000A775E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFFADD1520F09C6000A775E6 /* Assets.xcassets */; };
+		EFFADD1920F09C6000A775E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFFADD1720F09C6000A775E6 /* LaunchScreen.storyboard */; };
+		EFFADD1C20F09C6000A775E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD1B20F09C6000A775E6 /* main.m */; };
+		EFFADD2620F09D3100A775E6 /* ListsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD2520F09D3100A775E6 /* ListsTableViewController.m */; };
+		EFFADD2920F0A79800A775E6 /* NewListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD2820F0A79800A775E6 /* NewListTableViewController.m */; };
+		EFFADD2D20F0AFC700A775E6 /* EditableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD2C20F0AFC700A775E6 /* EditableTableViewCell.m */; };
+		EFFADD3020F0C0B100A775E6 /* IconsCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD2F20F0C0B100A775E6 /* IconsCollectionTableViewCell.m */; };
+		EFFADD3620F0C58200A775E6 /* CollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD3520F0C58200A775E6 /* CollectionTableViewCell.m */; };
+		EFFADD3920F0C7A900A775E6 /* IconCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD3820F0C7A900A775E6 /* IconCollectionViewCell.m */; };
+		EFFADD3C20F0D29A00A775E6 /* ColorCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD3B20F0D29A00A775E6 /* ColorCollectionViewCell.m */; };
+		EFFADD3F20F0D44E00A775E6 /* ColorsCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD3E20F0D44E00A775E6 /* ColorsCollectionTableViewCell.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EFFADD0920F09C5D00A775E6 /* TaskManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFFADD0C20F09C5D00A775E6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EFFADD0D20F09C5D00A775E6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EFFADD1520F09C6000A775E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EFFADD1820F09C6000A775E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EFFADD1A20F09C6000A775E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFFADD1B20F09C6000A775E6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EFFADD2420F09D3100A775E6 /* ListsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListsTableViewController.h; sourceTree = "<group>"; };
+		EFFADD2520F09D3100A775E6 /* ListsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListsTableViewController.m; sourceTree = "<group>"; };
+		EFFADD2720F0A79800A775E6 /* NewListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewListTableViewController.h; sourceTree = "<group>"; };
+		EFFADD2820F0A79800A775E6 /* NewListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewListTableViewController.m; sourceTree = "<group>"; };
+		EFFADD2B20F0AFC700A775E6 /* EditableTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditableTableViewCell.h; sourceTree = "<group>"; };
+		EFFADD2C20F0AFC700A775E6 /* EditableTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditableTableViewCell.m; sourceTree = "<group>"; };
+		EFFADD2E20F0C0B100A775E6 /* IconsCollectionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IconsCollectionTableViewCell.h; sourceTree = "<group>"; };
+		EFFADD2F20F0C0B100A775E6 /* IconsCollectionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IconsCollectionTableViewCell.m; sourceTree = "<group>"; };
+		EFFADD3420F0C58200A775E6 /* CollectionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionTableViewCell.h; sourceTree = "<group>"; };
+		EFFADD3520F0C58200A775E6 /* CollectionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionTableViewCell.m; sourceTree = "<group>"; };
+		EFFADD3720F0C7A900A775E6 /* IconCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IconCollectionViewCell.h; sourceTree = "<group>"; };
+		EFFADD3820F0C7A900A775E6 /* IconCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IconCollectionViewCell.m; sourceTree = "<group>"; };
+		EFFADD3A20F0D29A00A775E6 /* ColorCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorCollectionViewCell.h; sourceTree = "<group>"; };
+		EFFADD3B20F0D29A00A775E6 /* ColorCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorCollectionViewCell.m; sourceTree = "<group>"; };
+		EFFADD3D20F0D44E00A775E6 /* ColorsCollectionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorsCollectionTableViewCell.h; sourceTree = "<group>"; };
+		EFFADD3E20F0D44E00A775E6 /* ColorsCollectionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorsCollectionTableViewCell.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EFFADD0620F09C5D00A775E6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EFFADD0020F09C5D00A775E6 = {
+			isa = PBXGroup;
+			children = (
+				EFFADD0B20F09C5D00A775E6 /* TaskManager */,
+				EFFADD0A20F09C5D00A775E6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EFFADD0A20F09C5D00A775E6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EFFADD0920F09C5D00A775E6 /* TaskManager.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EFFADD0B20F09C5D00A775E6 /* TaskManager */ = {
+			isa = PBXGroup;
+			children = (
+				EFFADD0C20F09C5D00A775E6 /* AppDelegate.h */,
+				EFFADD0D20F09C5D00A775E6 /* AppDelegate.m */,
+				EFFADD2A20F0AE4700A775E6 /* Cells */,
+				EFFADD2320F09D0000A775E6 /* Controllers */,
+				EFFADD2220F09CE900A775E6 /* Support Files */,
+				EFFADD1A20F09C6000A775E6 /* Info.plist */,
+			);
+			path = TaskManager;
+			sourceTree = "<group>";
+		};
+		EFFADD2220F09CE900A775E6 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				EFFADD1520F09C6000A775E6 /* Assets.xcassets */,
+				EFFADD1720F09C6000A775E6 /* LaunchScreen.storyboard */,
+				EFFADD1B20F09C6000A775E6 /* main.m */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		EFFADD2320F09D0000A775E6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EFFADD2420F09D3100A775E6 /* ListsTableViewController.h */,
+				EFFADD2520F09D3100A775E6 /* ListsTableViewController.m */,
+				EFFADD2720F0A79800A775E6 /* NewListTableViewController.h */,
+				EFFADD2820F0A79800A775E6 /* NewListTableViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EFFADD2A20F0AE4700A775E6 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EFFADD4420F0DE4E00A775E6 /* CollectionViewCells */,
+				EFFADD4320F0DE4100A775E6 /* TableViewCells */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		EFFADD4320F0DE4100A775E6 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				EFFADD2B20F0AFC700A775E6 /* EditableTableViewCell.h */,
+				EFFADD2C20F0AFC700A775E6 /* EditableTableViewCell.m */,
+				EFFADD3420F0C58200A775E6 /* CollectionTableViewCell.h */,
+				EFFADD3520F0C58200A775E6 /* CollectionTableViewCell.m */,
+				EFFADD2E20F0C0B100A775E6 /* IconsCollectionTableViewCell.h */,
+				EFFADD2F20F0C0B100A775E6 /* IconsCollectionTableViewCell.m */,
+				EFFADD3D20F0D44E00A775E6 /* ColorsCollectionTableViewCell.h */,
+				EFFADD3E20F0D44E00A775E6 /* ColorsCollectionTableViewCell.m */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		EFFADD4420F0DE4E00A775E6 /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				EFFADD3720F0C7A900A775E6 /* IconCollectionViewCell.h */,
+				EFFADD3820F0C7A900A775E6 /* IconCollectionViewCell.m */,
+				EFFADD3A20F0D29A00A775E6 /* ColorCollectionViewCell.h */,
+				EFFADD3B20F0D29A00A775E6 /* ColorCollectionViewCell.m */,
+			);
+			path = CollectionViewCells;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EFFADD0820F09C5D00A775E6 /* TaskManager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFFADD1F20F09C6000A775E6 /* Build configuration list for PBXNativeTarget "TaskManager" */;
+			buildPhases = (
+				EFFADD0520F09C5D00A775E6 /* Sources */,
+				EFFADD0620F09C5D00A775E6 /* Frameworks */,
+				EFFADD0720F09C5D00A775E6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TaskManager;
+			productName = TaskManager;
+			productReference = EFFADD0920F09C5D00A775E6 /* TaskManager.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EFFADD0120F09C5D00A775E6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Victor Semenchuk";
+				TargetAttributes = {
+					EFFADD0820F09C5D00A775E6 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = EFFADD0420F09C5D00A775E6 /* Build configuration list for PBXProject "TaskManager" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EFFADD0020F09C5D00A775E6;
+			productRefGroup = EFFADD0A20F09C5D00A775E6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EFFADD0820F09C5D00A775E6 /* TaskManager */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EFFADD0720F09C5D00A775E6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFFADD1920F09C6000A775E6 /* LaunchScreen.storyboard in Resources */,
+				EFFADD1620F09C6000A775E6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EFFADD0520F09C5D00A775E6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFFADD2920F0A79800A775E6 /* NewListTableViewController.m in Sources */,
+				EFFADD2620F09D3100A775E6 /* ListsTableViewController.m in Sources */,
+				EFFADD3020F0C0B100A775E6 /* IconsCollectionTableViewCell.m in Sources */,
+				EFFADD3C20F0D29A00A775E6 /* ColorCollectionViewCell.m in Sources */,
+				EFFADD3920F0C7A900A775E6 /* IconCollectionViewCell.m in Sources */,
+				EFFADD3F20F0D44E00A775E6 /* ColorsCollectionTableViewCell.m in Sources */,
+				EFFADD1C20F09C6000A775E6 /* main.m in Sources */,
+				EFFADD2D20F0AFC700A775E6 /* EditableTableViewCell.m in Sources */,
+				EFFADD3620F0C58200A775E6 /* CollectionTableViewCell.m in Sources */,
+				EFFADD0E20F09C5D00A775E6 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EFFADD1720F09C6000A775E6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EFFADD1820F09C6000A775E6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EFFADD1D20F09C6000A775E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EFFADD1E20F09C6000A775E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EFFADD2020F09C6000A775E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5M3HNT6J9D;
+				INFOPLIST_FILE = TaskManager/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vicmac.TaskManager;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EFFADD2120F09C6000A775E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5M3HNT6J9D;
+				INFOPLIST_FILE = TaskManager/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vicmac.TaskManager;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EFFADD0420F09C5D00A775E6 /* Build configuration list for PBXProject "TaskManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFFADD1D20F09C6000A775E6 /* Debug */,
+				EFFADD1E20F09C6000A775E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFFADD1F20F09C6000A775E6 /* Build configuration list for PBXNativeTarget "TaskManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFFADD2020F09C6000A775E6 /* Debug */,
+				EFFADD2120F09C6000A775E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EFFADD0120F09C5D00A775E6 /* Project object */;
+}
