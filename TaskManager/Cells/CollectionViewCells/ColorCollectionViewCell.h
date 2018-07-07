@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FeatureCollectionViewCell.h"
 
-@interface ColorCollectionViewCell : UICollectionViewCell
+@interface ColorCollectionViewCell : FeatureCollectionViewCell
 
 @property (nonatomic) UIView *colorView;
 @property (nonatomic) UIColor *color;
 
 - (void)installColor:(UIColor *)color;
-- (void)indicateAsSelected:(BOOL)isSelected;
 
 @end

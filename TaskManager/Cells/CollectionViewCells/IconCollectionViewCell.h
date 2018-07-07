@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FeatureCollectionViewCell.h"
 
-@interface IconCollectionViewCell : UICollectionViewCell
+@interface IconCollectionViewCell : FeatureCollectionViewCell
 
 @property (nonatomic) UIImageView *imageView;
 @property (nonatomic) NSString *imageName;
 
 - (void)installImageWithName:(NSString *)name;
-- (void)indicateAsSelected:(BOOL)isSelected;
 
 @end

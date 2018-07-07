@@ -19,6 +19,7 @@
 		EFFADD3920F0C7A900A775E6 /* IconCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD3820F0C7A900A775E6 /* IconCollectionViewCell.m */; };
 		EFFADD3C20F0D29A00A775E6 /* ColorCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD3B20F0D29A00A775E6 /* ColorCollectionViewCell.m */; };
 		EFFADD3F20F0D44E00A775E6 /* ColorsCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD3E20F0D44E00A775E6 /* ColorsCollectionTableViewCell.m */; };
+		EFFADD4720F0F7D300A775E6 /* FeatureCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD4620F0F7D300A775E6 /* FeatureCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,8 @@
 		EFFADD3B20F0D29A00A775E6 /* ColorCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorCollectionViewCell.m; sourceTree = "<group>"; };
 		EFFADD3D20F0D44E00A775E6 /* ColorsCollectionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorsCollectionTableViewCell.h; sourceTree = "<group>"; };
 		EFFADD3E20F0D44E00A775E6 /* ColorsCollectionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorsCollectionTableViewCell.m; sourceTree = "<group>"; };
+		EFFADD4520F0F7D300A775E6 /* FeatureCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeatureCollectionViewCell.h; sourceTree = "<group>"; };
+		EFFADD4620F0F7D300A775E6 /* FeatureCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeatureCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +138,8 @@
 		EFFADD4420F0DE4E00A775E6 /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				EFFADD4520F0F7D300A775E6 /* FeatureCollectionViewCell.h */,
+				EFFADD4620F0F7D300A775E6 /* FeatureCollectionViewCell.m */,
 				EFFADD3720F0C7A900A775E6 /* IconCollectionViewCell.h */,
 				EFFADD3820F0C7A900A775E6 /* IconCollectionViewCell.m */,
 				EFFADD3A20F0D29A00A775E6 /* ColorCollectionViewCell.h */,
@@ -222,6 +227,7 @@
 				EFFADD2D20F0AFC700A775E6 /* EditableTableViewCell.m in Sources */,
 				EFFADD3620F0C58200A775E6 /* CollectionTableViewCell.m in Sources */,
 				EFFADD0E20F09C5D00A775E6 /* AppDelegate.m in Sources */,
+				EFFADD4720F0F7D300A775E6 /* FeatureCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
