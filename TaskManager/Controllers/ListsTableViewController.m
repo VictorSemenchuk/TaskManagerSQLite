@@ -9,14 +9,17 @@
 #import "ListsTableViewController.h"
 #import "NewListTableViewController.h"
 #import "ListTableViewCell.h"
+#import "DatabaseManager.h"
 
 static NSString * const kCellIdentifier = @"CellIdentifier";
 
 @interface ListsTableViewController ()
 
 @property (nonatomic) NSMutableArray *lists;
+@property (nonatomic) DatabaseManager *databaseManager;
 
 - (void)setupViews;
+- (void)loadData;
 
 @end
 
@@ -27,11 +30,15 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename:@"database.db"];
+    
     self.title = @"Lists";
     self.lists = [NSMutableArray array];
     [self.tableView registerClass:ListTableViewCell.class forCellReuseIdentifier:kCellIdentifier];
     
     [self setupViews];
+    
+    [self loadData];
 }
 
 #pragma mark - Methods
@@ -83,6 +90,12 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 70.0;
+}
+
+- (void)loadData {
+    NSString *query = @"select * from icons";
+    NSArray *info = [[NSArray alloc] initWithArray:[self.databaseManager loadDataFromDB:query]];
+    NSLog(@"%@", info);
 }
 
 @end

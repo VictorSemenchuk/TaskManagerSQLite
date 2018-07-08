@@ -22,6 +22,9 @@
 		EFFADD4720F0F7D300A775E6 /* FeatureCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD4620F0F7D300A775E6 /* FeatureCollectionViewCell.m */; };
 		EFFADD4D20F1020A00A775E6 /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD4C20F1020A00A775E6 /* ListTableViewCell.m */; };
 		EFFADD5120F1053A00A775E6 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD5020F1053A00A775E6 /* List.m */; };
+		EFFC3BC920F1FDF100B46116 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFC3BC820F1FDF100B46116 /* libsqlite3.tbd */; };
+		EFFC3BCC20F28F0D00B46116 /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFC3BCB20F28F0D00B46116 /* DatabaseManager.m */; };
+		EFFC3BCE20F2963400B46116 /* database.db in Resources */ = {isa = PBXBuildFile; fileRef = EFFC3BCD20F2963400B46116 /* database.db */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +57,10 @@
 		EFFADD4C20F1020A00A775E6 /* ListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListTableViewCell.m; sourceTree = "<group>"; };
 		EFFADD4F20F1053A00A775E6 /* List.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = List.h; sourceTree = "<group>"; };
 		EFFADD5020F1053A00A775E6 /* List.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = List.m; sourceTree = "<group>"; };
+		EFFC3BC820F1FDF100B46116 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		EFFC3BCA20F28F0D00B46116 /* DatabaseManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatabaseManager.h; sourceTree = "<group>"; };
+		EFFC3BCB20F28F0D00B46116 /* DatabaseManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatabaseManager.m; sourceTree = "<group>"; };
+		EFFC3BCD20F2963400B46116 /* database.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = database.db; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFFC3BC920F1FDF100B46116 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,8 +78,10 @@
 		EFFADD0020F09C5D00A775E6 = {
 			isa = PBXGroup;
 			children = (
+				EFFC3BCD20F2963400B46116 /* database.db */,
 				EFFADD0B20F09C5D00A775E6 /* TaskManager */,
 				EFFADD0A20F09C5D00A775E6 /* Products */,
+				EFFC3BC720F1FDF100B46116 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,8 +172,18 @@
 			children = (
 				EFFADD4F20F1053A00A775E6 /* List.h */,
 				EFFADD5020F1053A00A775E6 /* List.m */,
+				EFFC3BCA20F28F0D00B46116 /* DatabaseManager.h */,
+				EFFC3BCB20F28F0D00B46116 /* DatabaseManager.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		EFFC3BC720F1FDF100B46116 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EFFC3BC820F1FDF100B46116 /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +245,7 @@
 			files = (
 				EFFADD1920F09C6000A775E6 /* LaunchScreen.storyboard in Resources */,
 				EFFADD1620F09C6000A775E6 /* Assets.xcassets in Resources */,
+				EFFC3BCE20F2963400B46116 /* database.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +264,7 @@
 				EFFADD3920F0C7A900A775E6 /* IconCollectionViewCell.m in Sources */,
 				EFFADD3F20F0D44E00A775E6 /* ColorsCollectionTableViewCell.m in Sources */,
 				EFFADD1C20F09C6000A775E6 /* main.m in Sources */,
+				EFFC3BCC20F28F0D00B46116 /* DatabaseManager.m in Sources */,
 				EFFADD2D20F0AFC700A775E6 /* EditableTableViewCell.m in Sources */,
 				EFFADD3620F0C58200A775E6 /* CollectionTableViewCell.m in Sources */,
 				EFFADD4D20F1020A00A775E6 /* ListTableViewCell.m in Sources */,
