@@ -123,5 +123,8 @@ static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50.0;
+}
 
 @end

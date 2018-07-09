@@ -22,5 +22,6 @@
 - (id)initWithId:(NSUInteger)colorId red:(NSUInteger)red green:(NSUInteger)green blue:(NSUInteger)blue alpha:(NSUInteger)alpha;
 + (NSMutableArray *)loadAllColors;
 + (Color *)loadColorWithId:(NSUInteger)colorId;
++ (void)addColorWithRed:(NSUInteger)red green:(NSUInteger)green blue:(NSUInteger)blue alpha:(NSUInteger)alpha;
 
 @end

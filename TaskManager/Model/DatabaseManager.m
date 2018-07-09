@@ -8,6 +8,8 @@
 
 #import "DatabaseManager.h"
 #import <sqlite3.h>
+#import "Color.h"
+#import "Icon.h"
 
 @interface DatabaseManager ()
 
@@ -15,7 +17,9 @@
 @property (nonatomic) NSString *databaseFilename;
 @property (nonatomic) NSMutableArray *arrResults;
 
-- (void)copyDatabaseIntoDocumentsDirectory;
+- (void)createDatabaseIfNeeded;
+- (NSUInteger)createTableWithName:(NSString *)tableName query:(NSString *)query database:(sqlite3 *)database;
+- (void)fillInitialData;
 - (void)runQuery:(const char *)query isQueryExecutable:(BOOL)queryExecutable;
 
 @end
@@ -27,21 +31,82 @@
     if (self) {
         self.documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
         self.databaseFilename = dbFilename;
-        [self copyDatabaseIntoDocumentsDirectory];
+        [self createDatabaseIfNeeded];
     }
     return self;
 }
 
-- (void)copyDatabaseIntoDocumentsDirectory {
+- (void)createDatabaseIfNeeded {
     NSString *destinationPath = [self.documentsDirectory stringByAppendingPathComponent:self.databaseFilename];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:destinationPath]) {
-        NSString *sourcePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:self.databaseFilename];
-        NSError *error;
-        [[NSFileManager defaultManager] copyItemAtPath:sourcePath toPath:destinationPath error:&error];
-        if (error != nil) {
-            NSLog(@"Copying database to documents directory error: %@", [error localizedDescription]);
-        }
+    NSLog(@"Database destination path: %@", destinationPath);
+    sqlite3 *database;
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    if ([fileManager fileExistsAtPath:destinationPath isDirectory:nil]) {
+        NSLog(@"Database already exists");
+        return;
     }
+    if (sqlite3_open([destinationPath UTF8String], &database) == SQLITE_OK) {
+        NSUInteger resultCode = 0;
+        NSString *query = @"CREATE TABLE lists (id integer PRIMARY KEY AUTOINCREMENT, title text NOT NULL, colorId integer NOT NULL, iconId integer NOT NULL)";
+        resultCode = [self createTableWithName:@"lists" query:query database:database];
+        if (resultCode == 1) {
+            return;
+        }
+        query = @"CREATE TABLE tasks (id integer PRIMARY KEY AUTOINCREMENT, listId integet NOT NULL, text text NOT NULL, isChecked boolean NOT NULL)";
+        resultCode = [self createTableWithName:@"tasks" query:query database:database];
+        if (resultCode == 1) {
+            return;
+        }
+        query = @"CREATE TABLE colors (id integer PRIMARY KEY AUTOINCREMENT, red integer NOT NULL, green integer NOT NULL, blue integer NOT NULL, alpha NOT NULL)";
+        resultCode = [self createTableWithName:@"colors" query:query database:database];
+        if (resultCode == 1) {
+            return;
+        }
+        query = @"CREATE TABLE icons (id integer PRIMARY KEY AUTOINCREMENT, path text NOT NULL)";
+        resultCode = [self createTableWithName:@"icons" query:query database:database];
+        if (resultCode == 1) {
+            return;
+        }
+    } else {
+        NSLog(@"Open table failed");
+    }
+    sqlite3_close(database);
+    [self fillInitialData];
+}
+
+- (NSUInteger)createTableWithName:(NSString *)tableName query:(NSString *)query database:(sqlite3 *)database {;
+    if (sqlite3_exec(database, [query UTF8String], NULL, NULL, NULL) == SQLITE_OK) {
+        NSLog(@"%@ table created", tableName);
+        return 0;
+    } else {
+        NSLog(@"%@ table did not created", tableName);
+        return 1;
+    }
+}
+
+- (void)fillInitialData {
+    
+    //initial Colors
+    [Color addColorWithRed:90 green:200 blue:250 alpha:255];
+    [Color addColorWithRed:255 green:204 blue:0 alpha:255];
+    [Color addColorWithRed:255 green:149 blue:0 alpha:255];
+    [Color addColorWithRed:255 green:45 blue:85 alpha:255];
+    [Color addColorWithRed:76 green:217 blue:100 alpha:255];
+    [Color addColorWithRed:255 green:59 blue:48 alpha:255];
+    
+    //initial Icons
+    [Icon addIconWithPath:@"icon1"];
+    [Icon addIconWithPath:@"icon2"];
+    [Icon addIconWithPath:@"icon3"];
+    [Icon addIconWithPath:@"icon4"];
+    [Icon addIconWithPath:@"icon5"];
+    [Icon addIconWithPath:@"icon6"];
+    [Icon addIconWithPath:@"icon7"];
+    [Icon addIconWithPath:@"icon8"];
+    [Icon addIconWithPath:@"icon9"];
+    [Icon addIconWithPath:@"icon10"];
+    [Icon addIconWithPath:@"icon11"];
+    [Icon addIconWithPath:@"icon12"];
 }
 
 - (void)runQuery:(const char *)query isQueryExecutable:(BOOL)queryExecutable {

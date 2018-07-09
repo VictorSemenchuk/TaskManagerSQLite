@@ -43,6 +43,12 @@
     return color;
 }
 
++ (void)addColorWithRed:(NSUInteger)red green:(NSUInteger)green blue:(NSUInteger)blue alpha:(NSUInteger)alpha {
+    DatabaseManager *databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename:kDatabaseFilename];
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO colors (red, green, blue, alpha) VALUES (%lu, %lu, %lu, %lu)", red, green, blue, alpha];
+    [databaseManager executeQuery:query];
+}
+
 + (NSMutableArray *)loadDataWithQuery:(NSString *)query {
     
     DatabaseManager *databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename:kDatabaseFilename];
