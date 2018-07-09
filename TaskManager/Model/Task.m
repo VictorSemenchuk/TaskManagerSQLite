@@ -9,12 +9,6 @@
 #import "Task.h"
 #import "DatabaseManager.h"
 
-@interface Task ()
-
-+ (void)execQuery:(NSString *)query;
-
-@end
-
 @implementation Task
 
 - (id)initWithId:(NSUInteger)taskId listId:(NSUInteger)listId text:(NSString *)text isChecked:(BOOL)isChecked {
@@ -55,23 +49,22 @@
 
 + (void)addNewTaskWithText:(NSString *)text andListId:(NSUInteger)listId {
     NSString *query = [NSString stringWithFormat:@"INSERT INTO tasks (listId, text, isChecked) VALUES (%lu, '%@', %d)", listId, text, false];
-    [Task execQuery:query];
+    [DatabaseManager executeQuery:query];
 }
 
 + (void)updateCheckForTaskWithId:(NSUInteger)taskId oldValue:(BOOL)isChecked {
     NSString *query = [NSString stringWithFormat:@"UPDATE tasks SET isChecked = %d WHERE id = %lu", !isChecked, taskId];
-    [Task execQuery:query];
-}
-
-+ (void)execQuery:(NSString *)query {
-    DatabaseManager *databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename:kDatabaseFilename];
-    [databaseManager executeQuery:query];
+    [DatabaseManager executeQuery:query];
 }
 
 + (void)removeTaskWithId:(NSUInteger)taskId {
-    DatabaseManager *databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename: kDatabaseFilename];
     NSString *query = [NSString stringWithFormat:@"DELETE FROM tasks WHERE id = %lu", taskId];
-    [databaseManager executeQuery:query];
+    [DatabaseManager executeQuery:query];
+}
+
++ (void)updateTaskWithId:(NSUInteger)taskId text:(NSString *)text {
+    NSString *query = [NSString stringWithFormat:@"UPDATE tasks SET text = '%@' WHERE id = %lu", text, taskId];
+    [DatabaseManager executeQuery:query];
 }
 
 @end

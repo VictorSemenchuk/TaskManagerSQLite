@@ -186,4 +186,9 @@
     [self runQuery:[query UTF8String] isQueryExecutable:YES];
 }
 
++ (void)executeQuery:(NSString *)query {
+    DatabaseManager *databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename:kDatabaseFilename];
+    [databaseManager executeQuery:query];
+}
+
 @end

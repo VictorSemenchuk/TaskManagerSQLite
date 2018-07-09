@@ -32,9 +32,8 @@
 }
 
 + (void)addNewListWithTitle:(NSString *)title iconId:(NSUInteger)iconId colorId:(NSUInteger)colorId {
-    DatabaseManager *databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename:kDatabaseFilename];
     NSString *query = [NSString stringWithFormat:@"INSERT INTO lists (title, colorId, iconId) VALUES ('%@', %lu, %lu)", title, colorId, iconId];
-    [databaseManager executeQuery:query];
+    [DatabaseManager executeQuery:query];
 }
 
 + (NSMutableArray *)loadAllLists {
@@ -73,11 +72,10 @@
 }
 
 + (void)removeListWithId:(NSUInteger)listId {
-    DatabaseManager *databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename: kDatabaseFilename];
     NSString *query = [NSString stringWithFormat:@"DELETE FROM tasks WHERE listId = %lu", listId];
-    [databaseManager executeQuery:query];
+    [DatabaseManager executeQuery:query];
     query = [NSString stringWithFormat:@"DELETE FROM lists WHERE id = %lu", listId];
-    [databaseManager executeQuery:query];
+    [DatabaseManager executeQuery:query];
 }
 
 @end

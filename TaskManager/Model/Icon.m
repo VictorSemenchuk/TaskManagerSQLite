@@ -27,9 +27,8 @@
 }
 
 + (void)addIconWithPath:(NSString *)path {
-    DatabaseManager *databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename:kDatabaseFilename];
     NSString *query = [NSString stringWithFormat:@"INSERT INTO icons (path) VALUES ('%@')", path];
-    [databaseManager executeQuery:query];
+    [DatabaseManager executeQuery:query];
 }
 
 + (NSMutableArray *)loadAllIcons {

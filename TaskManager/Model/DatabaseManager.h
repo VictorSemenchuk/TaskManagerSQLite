@@ -17,6 +17,6 @@ static NSString * const kDatabaseFilename = @"database.db";
 - (id)initWithDatabaseFilename:(NSString *)dbFilename;
 - (NSArray *)loadDataFromDB:(NSString *)query;
 - (void)executeQuery:(NSString *)query;
-
++ (void)executeQuery:(NSString *)query;
 
 @end

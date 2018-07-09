@@ -20,5 +20,6 @@
 + (void)addNewTaskWithText:(NSString *)text andListId:(NSUInteger)listId;
 + (void)updateCheckForTaskWithId:(NSUInteger)taskId oldValue:(BOOL)isChecked;
 + (void)removeTaskWithId:(NSUInteger)taskId;
++ (void)updateTaskWithId:(NSUInteger)taskId text:(NSString *)text;
 
 @end
