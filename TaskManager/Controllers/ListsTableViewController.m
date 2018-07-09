@@ -10,13 +10,14 @@
 #import "NewListTableViewController.h"
 #import "ListTableViewCell.h"
 #import "DatabaseManager.h"
+#import "ListTableViewController.h"
+#import "Icon.h"
 
 static NSString * const kCellIdentifier = @"CellIdentifier";
 
-@interface ListsTableViewController ()
+@interface ListsTableViewController () <NewListTableViewControllerDelegate>
 
 @property (nonatomic) NSMutableArray *lists;
-@property (nonatomic) DatabaseManager *databaseManager;
 
 - (void)setupViews;
 - (void)loadData;
@@ -30,15 +31,12 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename:@"database.db"];
+    [self loadData];
     
     self.title = @"Lists";
-    self.lists = [NSMutableArray array];
     [self.tableView registerClass:ListTableViewCell.class forCellReuseIdentifier:kCellIdentifier];
     
     [self setupViews];
-    
-    [self loadData];
 }
 
 #pragma mark - Methods
@@ -50,10 +48,23 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
     
 }
 
+- (void)loadData {
+    if (self.lists != nil) {
+        [self.lists removeAllObjects];
+        self.lists = nil;
+    }
+    self.lists = [List loadAllLists];
+    for(List *list in self.lists) {
+        NSLog(@"colorId: %lu, iconId: %lu", list.colorId, list.iconId);
+    }
+    [self.tableView reloadData];
+}
+
 #pragma mark - Target actions
 
 - (void)addList {
     NewListTableViewController *vc = [[NewListTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -64,14 +75,12 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //return [self.lists count];
-    return 1;
+    return [self.lists count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
-    List *list = [[List alloc] initWithTitle:@"MyList" iconTitle:@"icon8" andColor:UIColor.redColor];
-    [cell installAttributesForList:list];
+    [cell installAttributesForList:self.lists[indexPath.row]];
     return cell;
 }
 
@@ -81,21 +90,25 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        List *list = self.lists[indexPath.row];
+        [List removeListWithId:list.listId];
         [self.lists removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    ListTableViewController *listTable = [[ListTableViewController alloc] initWithList:self.lists[indexPath.row]];
+    [self.navigationController pushViewController:listTable animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 70.0;
 }
 
-- (void)loadData {
-    NSString *query = @"select * from icons";
-    NSArray *info = [[NSArray alloc] initWithArray:[self.databaseManager loadDataFromDB:query]];
-    NSLog(@"%@", info);
+#pragma mark - NewListTableViewControllerDelegate
+
+- (void)newListAdded {
+    [self loadData];
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "ColorsCollectionTableViewCell.h"
 #import "ColorCollectionViewCell.h"
+#import "Color.h"
 
 static NSString * const kColorCollectionViewCell = @"ColorCollectionViewCell";
 
@@ -36,9 +37,17 @@ static NSString * const kColorCollectionViewCell = @"ColorCollectionViewCell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ColorCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kColorCollectionViewCell forIndexPath:indexPath];
-    [cell installColor:self.objects[indexPath.row]];
+    Color *color = self.objects[indexPath.row];
+    [cell installColor:color.color];
     [cell indicateAsSelected:(self.selectedIndex == indexPath.row)];
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [super collectionView:collectionView didSelectItemAtIndexPath:indexPath];
+    
+    Color *color = self.objects[indexPath.row];
+    [self.delegate colorWasSelectedWithId:color.colorId];
 }
 
 

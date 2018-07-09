@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA7C05C720F33D19008F42F7 /* ListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7C05C620F33D19008F42F7 /* ListTableViewController.m */; };
+		DA7C05CA20F33E1E008F42F7 /* ListItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7C05C920F33E1E008F42F7 /* ListItemTableViewCell.m */; };
+		DA7C05CD20F34BFF008F42F7 /* Icon.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7C05CC20F34BFF008F42F7 /* Icon.m */; };
+		DA7C05D020F35656008F42F7 /* Color.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7C05CF20F35656008F42F7 /* Color.m */; };
+		DA7C05D620F388A0008F42F7 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7C05D520F388A0008F42F7 /* Task.m */; };
 		EFFADD0E20F09C5D00A775E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD0D20F09C5D00A775E6 /* AppDelegate.m */; };
 		EFFADD1620F09C6000A775E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFFADD1520F09C6000A775E6 /* Assets.xcassets */; };
 		EFFADD1920F09C6000A775E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFFADD1720F09C6000A775E6 /* LaunchScreen.storyboard */; };
@@ -28,6 +33,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA7C05C520F33D19008F42F7 /* ListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListTableViewController.h; sourceTree = "<group>"; };
+		DA7C05C620F33D19008F42F7 /* ListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListTableViewController.m; sourceTree = "<group>"; };
+		DA7C05C820F33E1E008F42F7 /* ListItemTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListItemTableViewCell.h; sourceTree = "<group>"; };
+		DA7C05C920F33E1E008F42F7 /* ListItemTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListItemTableViewCell.m; sourceTree = "<group>"; };
+		DA7C05CB20F34BFF008F42F7 /* Icon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Icon.h; sourceTree = "<group>"; };
+		DA7C05CC20F34BFF008F42F7 /* Icon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Icon.m; sourceTree = "<group>"; };
+		DA7C05CE20F35656008F42F7 /* Color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
+		DA7C05CF20F35656008F42F7 /* Color.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Color.m; sourceTree = "<group>"; };
+		DA7C05D420F388A0008F42F7 /* Task.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		DA7C05D520F388A0008F42F7 /* Task.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		EFFADD0920F09C5D00A775E6 /* TaskManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFFADD0C20F09C5D00A775E6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EFFADD0D20F09C5D00A775E6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -124,6 +139,8 @@
 				EFFADD2520F09D3100A775E6 /* ListsTableViewController.m */,
 				EFFADD2720F0A79800A775E6 /* NewListTableViewController.h */,
 				EFFADD2820F0A79800A775E6 /* NewListTableViewController.m */,
+				DA7C05C520F33D19008F42F7 /* ListTableViewController.h */,
+				DA7C05C620F33D19008F42F7 /* ListTableViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -150,6 +167,8 @@
 				EFFADD3E20F0D44E00A775E6 /* ColorsCollectionTableViewCell.m */,
 				EFFADD4B20F1020A00A775E6 /* ListTableViewCell.h */,
 				EFFADD4C20F1020A00A775E6 /* ListTableViewCell.m */,
+				DA7C05C820F33E1E008F42F7 /* ListItemTableViewCell.h */,
+				DA7C05C920F33E1E008F42F7 /* ListItemTableViewCell.m */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -170,10 +189,16 @@
 		EFFADD4E20F1052600A775E6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EFFADD4F20F1053A00A775E6 /* List.h */,
-				EFFADD5020F1053A00A775E6 /* List.m */,
 				EFFC3BCA20F28F0D00B46116 /* DatabaseManager.h */,
 				EFFC3BCB20F28F0D00B46116 /* DatabaseManager.m */,
+				EFFADD4F20F1053A00A775E6 /* List.h */,
+				EFFADD5020F1053A00A775E6 /* List.m */,
+				DA7C05CB20F34BFF008F42F7 /* Icon.h */,
+				DA7C05CC20F34BFF008F42F7 /* Icon.m */,
+				DA7C05CE20F35656008F42F7 /* Color.h */,
+				DA7C05CF20F35656008F42F7 /* Color.m */,
+				DA7C05D420F388A0008F42F7 /* Task.h */,
+				DA7C05D520F388A0008F42F7 /* Task.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -256,8 +281,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA7C05CA20F33E1E008F42F7 /* ListItemTableViewCell.m in Sources */,
+				DA7C05D620F388A0008F42F7 /* Task.m in Sources */,
 				EFFADD5120F1053A00A775E6 /* List.m in Sources */,
 				EFFADD2920F0A79800A775E6 /* NewListTableViewController.m in Sources */,
+				DA7C05D020F35656008F42F7 /* Color.m in Sources */,
 				EFFADD2620F09D3100A775E6 /* ListsTableViewController.m in Sources */,
 				EFFADD3020F0C0B100A775E6 /* IconsCollectionTableViewCell.m in Sources */,
 				EFFADD3C20F0D29A00A775E6 /* ColorCollectionViewCell.m in Sources */,
@@ -270,6 +298,8 @@
 				EFFADD4D20F1020A00A775E6 /* ListTableViewCell.m in Sources */,
 				EFFADD0E20F09C5D00A775E6 /* AppDelegate.m in Sources */,
 				EFFADD4720F0F7D300A775E6 /* FeatureCollectionViewCell.m in Sources */,
+				DA7C05CD20F34BFF008F42F7 /* Icon.m in Sources */,
+				DA7C05C720F33D19008F42F7 /* ListTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

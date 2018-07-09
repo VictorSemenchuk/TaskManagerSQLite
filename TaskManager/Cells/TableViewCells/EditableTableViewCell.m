@@ -32,6 +32,7 @@
         _textField.leftView = paddingView;
         _textField.leftViewMode = UITextFieldViewModeAlways;
         _textField.placeholder = @"Title";
+        [_textField addTarget:self action:@selector(didChangeText) forControlEvents:UIControlEventEditingChanged];
     }
     return _textField;
 }
@@ -40,6 +41,10 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.accessoryType = UITableViewCellAccessoryNone;
     [self.contentView addSubview:self.textField];
+}
+
+- (void)didChangeText {
+     [self.delegate textChanged:self.textField.text];
 }
 
 @end

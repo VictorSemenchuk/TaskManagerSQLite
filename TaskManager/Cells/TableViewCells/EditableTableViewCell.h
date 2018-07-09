@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol EditableTableViewCellDelegate
+
+- (void)textChanged:(NSString *)text;
+
+@end
+
 @interface EditableTableViewCell : UITableViewCell
 
 @property (nonatomic) UITextField *textField;
+@property (weak, nonatomic) id<EditableTableViewCellDelegate> delegate;
 
 @end

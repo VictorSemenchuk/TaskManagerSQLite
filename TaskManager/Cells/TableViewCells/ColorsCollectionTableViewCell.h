@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "CollectionTableViewCell.h"
 
+@protocol ColorsCollectionTableViewCellDelegate <NSObject>
+
+- (void)colorWasSelectedWithId:(NSUInteger)colorId;
+
+@end
+
 @interface ColorsCollectionTableViewCell : CollectionTableViewCell
+
+@property (weak, nonatomic) id<ColorsCollectionTableViewCellDelegate> delegate;
 
 @end

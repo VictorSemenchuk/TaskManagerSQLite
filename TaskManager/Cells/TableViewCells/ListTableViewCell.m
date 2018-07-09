@@ -62,14 +62,14 @@
 - (void)installAttributesForList:(List *)list {
     self.titleLabel.text = list.title;
     UIImage *icon;
-    if (list.iconTitle) {
-        icon = [UIImage imageNamed:list.iconTitle];
+    if (list.iconId) {
+        icon = [UIImage imageNamed:list.icon.path];
     } else {
         icon = [UIImage imageNamed:@"icon0"];
     }
     icon = [icon imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self.iconImageView.image = icon;
-    self.iconImageView.tintColor = list.color;
+    self.iconImageView.tintColor = list.color.color;
 }
 
 @end

@@ -15,5 +15,6 @@
 @property (nonatomic) NSUInteger selectedIndex;
 
 - (void)registerCells;
+- (void)installObjects:(NSMutableArray *)objects;
 
 @end

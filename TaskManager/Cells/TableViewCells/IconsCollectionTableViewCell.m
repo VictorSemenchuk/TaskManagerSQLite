@@ -8,6 +8,7 @@
 
 #import "IconsCollectionTableViewCell.h"
 #import "IconCollectionViewCell.h"
+#import "Icon.h"
 
 static NSString * const kIconCollectionViewCell = @"IconCollectionViewCell";
 
@@ -17,19 +18,18 @@ static NSString * const kIconCollectionViewCell = @"IconCollectionViewCell";
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self registerCells];
-        self.objects = [NSMutableArray arrayWithArray:@[@"icon1",
-                                                        @"icon2",
-                                                        @"icon3",
-                                                        @"icon4",
-                                                        @"icon5",
-                                                        @"icon6",
-                                                        @"icon7",
-                                                        @"icon8",
-                                                        @"icon9",
-                                                        @"icon10",
-                                                        @"icon11",
-                                                        @"icon12"]];
-        [self.collectionView reloadData];
+//        self.objects = [NSMutableArray arrayWithArray:@[@"icon1",
+//                                                        @"icon2",
+//                                                        @"icon3",
+//                                                        @"icon4",
+//                                                        @"icon5",
+//                                                        @"icon6",
+//                                                        @"icon7",
+//                                                        @"icon8",
+//                                                        @"icon9",
+//                                                        @"icon10",
+//                                                        @"icon11",
+//                                                        @"icon12"]];
     }
     return self;
 }
@@ -42,9 +42,17 @@ static NSString * const kIconCollectionViewCell = @"IconCollectionViewCell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     IconCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kIconCollectionViewCell forIndexPath:indexPath];
-    [cell installImageWithName:self.objects[indexPath.row]];
+    Icon *icon = self.objects[indexPath.row];
+    [cell installImageWithName:icon.path];
     [cell indicateAsSelected:(self.selectedIndex == indexPath.row)];
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [super collectionView:collectionView didSelectItemAtIndexPath:indexPath];
+    
+    Icon *icon = self.objects[indexPath.row];
+    [self.delegate iconWasSelectedWithId:icon.iconId];
 }
 
 @end

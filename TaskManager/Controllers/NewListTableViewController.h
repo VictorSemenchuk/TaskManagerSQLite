@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol NewListTableViewControllerDelegate <NSObject>
+
+- (void)newListAdded;
+
+@end
+
 @interface NewListTableViewController : UITableViewController
+
+@property (weak, nonatomic) id<NewListTableViewControllerDelegate> delegate;
 
 @end

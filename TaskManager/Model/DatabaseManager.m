@@ -80,7 +80,7 @@
     
     if (queryExecutable) {
         resultCode = sqlite3_step(compiledStatement);
-        if (resultCode != SQLITE_OK) {
+        if (resultCode != SQLITE_DONE) {
             NSLog(@"DB Error: %s", sqlite3_errmsg(db));
             sqlite3_finalize(compiledStatement);
             sqlite3_close(db);
@@ -96,6 +96,10 @@
                 if (arrDataRow != NULL) {
                     [arrDataRow addObject:[NSString  stringWithUTF8String:dbDataAsChars]];
                 }
+                if (self.arrColumnNames.count != totalColumnsCount) {
+                    dbDataAsChars = (char *)sqlite3_column_name(compiledStatement, i);
+                    [self.arrColumnNames addObject:[NSString stringWithUTF8String:dbDataAsChars]];
+                }
             }
             if (arrDataRow.count > 0) {
                 [self.arrResults addObject:arrDataRow];
@@ -105,63 +109,7 @@
     
     sqlite3_finalize(compiledStatement);
     sqlite3_close(db);
-    
-//    BOOL openDatabaseResult = sqlite3_open([databasePath UTF8String], &sqlite3Database);
-//    if (openDatabaseResult == SQLITE_OK) {
-//        sqlite3_stmt *compiledStatement;
-//
-//        BOOL prepareStatementResult = sqlite3_prepare_v2(sqlite3Database, query, -1, &compiledStatement, NULL);
-//        if (prepareStatementResult == SQLITE_OK) {
-//            if (!queryExecutable) {
-//                NSMutableArray *arrDataRow;
-//
-//                while (sqlite3_step(compiledStatement) == SQLITE_ROW) {
-//                    arrDataRow = [[NSMutableArray alloc] init];
-//                    int totalColumns = sqlite3_column_count(compiledStatement);
-//
-//                    for (int i = 0; i < totalColumns; i++) {
-//                        char *dbDataAsChars = (char *)sqlite3_column_text(compiledStatement, i);
-//
-//                        if (dbDataAsChars != NULL) {
-//                            [arrDataRow addObject:[NSString  stringWithUTF8String:dbDataAsChars]];
-//                        }
-//
-//                        if (self.arrColumnNames.count != totalColumns) {
-//                            dbDataAsChars = (char *)sqlite3_column_name(compiledStatement, i);
-//                            [self.arrColumnNames addObject:[NSString stringWithUTF8String:dbDataAsChars]];
-//                        }
-//                    }
-//
-//                    if (arrDataRow.count > 0) {
-//                        [self.arrResults addObject:arrDataRow];
-//                    }
-//                }
-//            } else {
-//                // This is the case of an executable query (insert, update, ...).
-//
-//                // Execute the query.
-//                BOOL executeQueryResults = sqlite3_step(compiledStatement);
-//                if (executeQueryResults == SQLITE_DONE) {
-//                    // Keep the affected rows.
-//                    self.affectedRows = sqlite3_changes(sqlite3Database);
-//
-//                    // Keep the last inserted row ID.
-//                    self.lastInsertedRowID = sqlite3_last_insert_rowid(sqlite3Database);
-//                }
-//                else {
-//                    // If could not execute the query show the error message on the debugger.
-//                    NSLog(@"DB Error: %s", sqlite3_errmsg(sqlite3Database));
-//                }
-//            }
-//        } else {
-//            // In the database cannot be opened then show the error message on the debugger.
-//            NSLog(@"%s", sqlite3_errmsg(sqlite3Database));
-//        }
-//        sqlite3_finalize(compiledStatement);
-//    }
-//    sqlite3_close(sqlite3Database);
-    
-    
+
 }
 
 - (NSArray *)loadDataFromDB:(NSString *)query{

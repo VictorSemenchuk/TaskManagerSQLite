@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString * const kDatabaseFilename = @"database.db";
+
 @interface DatabaseManager : NSObject
 
 @property (nonatomic) NSMutableArray *arrColumnNames;

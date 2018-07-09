@@ -27,6 +27,11 @@ static CGFloat const verticalInsetConstant = 20.0;
     return self;
 }
 
+- (void)installObjects:(NSMutableArray *)objects {
+    self.objects = objects;
+    [self.collectionView reloadData];
+}
+
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
     _selectedIndex = selectedIndex;
     [self.collectionView reloadData];

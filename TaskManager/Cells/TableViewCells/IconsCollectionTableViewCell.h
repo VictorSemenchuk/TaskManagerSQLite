@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "CollectionTableViewCell.h"
 
+@protocol IconsCollectionTableViewCellDelegate <NSObject>
+
+- (void)iconWasSelectedWithId:(NSUInteger)iconId;
+
+@end
+
 @interface IconsCollectionTableViewCell : CollectionTableViewCell
+
+@property (weak, nonatomic) id<IconsCollectionTableViewCellDelegate> delegate;
 
 @end

@@ -8,13 +8,23 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "Icon.h"
+#import "Color.h"
 
 @interface List : NSObject
 
+@property (assign, nonatomic) NSUInteger listId;
 @property (nonatomic) NSString *title;
-@property (nonatomic) NSString *iconTitle;
-@property (nonatomic) UIColor *color;
+@property (assign, nonatomic) NSUInteger iconId;
+@property (assign, nonatomic) NSUInteger colorId;
 
-- (id)initWithTitle:(NSString *)title iconTitle:(NSString *)iconTitle andColor:(UIColor *)color;
+@property (nonatomic) Icon *icon;
+@property (nonatomic) Color *color;
+
+- (id)initWithId:(NSUInteger)listId title:(NSString *)title iconId:(NSUInteger)iconId colorId:(NSUInteger)colorId;
++ (void)addNewListWithTitle:(NSString *)title iconId:(NSUInteger)iconId colorId:(NSUInteger)colorId;
++ (NSMutableArray *)loadAllLists;
++ (List *)loadListWithId:(NSUInteger)listId;
++ (void)removeListWithId:(NSUInteger)listId;
 
 @end
