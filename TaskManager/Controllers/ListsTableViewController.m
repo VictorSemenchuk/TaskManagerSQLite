@@ -15,7 +15,7 @@
 
 static NSString * const kCellIdentifier = @"CellIdentifier";
 
-@interface ListsTableViewController () <NewListTableViewControllerDelegate>
+@interface ListsTableViewController () <NewListTableViewControllerDelegate, ListTableViewControllerDelegate>
 
 @property (nonatomic) NSMutableArray *lists;
 
@@ -56,6 +56,8 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
     self.lists = [List loadAllLists];
     for(List *list in self.lists) {
         NSLog(@"colorId: %lu, iconId: %lu", list.colorId, list.iconId);
+        NSUInteger uncompletedTasksCount = [List getCountUncheckedTasksForListId:list.listId];
+        list.uncheckedTasksCount = uncompletedTasksCount;
     }
     [self.tableView reloadData];
 }
@@ -98,6 +100,7 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ListTableViewController *listTable = [[ListTableViewController alloc] initWithList:self.lists[indexPath.row]];
+    listTable.delegate = self;
     [self.navigationController pushViewController:listTable animated:YES];
 }
 
@@ -114,6 +117,18 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
     [self.lists addObject:newList];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.lists count] - 1 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+}
+
+#pragma mark - ListTableViewControllerDelegate
+
+- (void)wasEditedList:(List *)list {
+    NSUInteger listIndex = [self.lists indexOfObject:list];
+    List *editedList = self.lists[listIndex];
+    NSUInteger countUncompletedTasks = [List getCountUncheckedTasksForListId:editedList.listId];
+    editedList.uncheckedTasksCount = countUncompletedTasks;
+    [self.lists replaceObjectAtIndex:listIndex withObject:editedList];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:listIndex inSection:0];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 @end

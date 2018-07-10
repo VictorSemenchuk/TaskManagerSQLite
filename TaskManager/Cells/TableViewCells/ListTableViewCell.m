@@ -12,6 +12,7 @@
 
 @property (nonatomic) UIImageView *iconImageView;
 @property (nonatomic) UILabel *titleLabel;
+@property (nonatomic) UILabel *subtitleLabel;
 
 - (void)setupViews;
 
@@ -45,6 +46,18 @@
     return _titleLabel;
 }
 
+- (UILabel *)subtitleLabel {
+    if (!_subtitleLabel) {
+        _subtitleLabel = [[UILabel alloc] init];
+        _subtitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _subtitleLabel.font = [UIFont systemFontOfSize:12.0];
+        _subtitleLabel.textColor = UIColor.lightGrayColor;
+        _subtitleLabel.textAlignment = NSTextAlignmentLeft;
+        _subtitleLabel.text = @"Subtitle";
+    }
+    return _subtitleLabel;
+}
+
 - (void)setupViews {
     
     [self addSubview:self.iconImageView];
@@ -53,14 +66,24 @@
                                               [self.iconImageView.heightAnchor constraintEqualToConstant:self.bounds.size.height],
                                               [self.iconImageView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]]];
     
-    [self addSubview:self.titleLabel];
-    [NSLayoutConstraint activateConstraints:@[[self.titleLabel.leadingAnchor constraintEqualToAnchor:self.iconImageView.trailingAnchor constant:10.0],
-                                              [self.titleLabel.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-10.0],
-                                              [self.titleLabel.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]]];
+    UIStackView *stackView = [[UIStackView alloc] init];
+    stackView.translatesAutoresizingMaskIntoConstraints = false;
+    stackView.axis = UILayoutConstraintAxisVertical;
+    stackView.spacing = 3.0;
+    
+    [self addSubview:stackView];
+    [NSLayoutConstraint activateConstraints:@[
+                                              [stackView.leadingAnchor constraintEqualToAnchor:self.iconImageView.trailingAnchor constant:10.0],
+                                              [stackView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-10.0],
+                                              [stackView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]]];
+    
+    [stackView addArrangedSubview:self.titleLabel];
+    [stackView addArrangedSubview:self.subtitleLabel];
 }
 
 - (void)installAttributesForList:(List *)list {
     self.titleLabel.text = list.title;
+    self.subtitleLabel.text = [NSString stringWithFormat:@"%lu tasks uncompleted", list.uncheckedTasksCount];
     UIImage *icon;
     if (list.iconId) {
         icon = [UIImage imageNamed:list.icon.path];

@@ -14,6 +14,8 @@ static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
 
 @interface ListTableViewController ()
 
+@property (assign, nonatomic) BOOL listWasEdited;
+
 - (void)setupViews;
 - (void)newTask;
 - (void)loadData;
@@ -26,6 +28,7 @@ static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
     self = [super init];
     if (self) {
         _list = list;
+        _listWasEdited = NO;
     }
     return self;
 }
@@ -38,6 +41,13 @@ static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
     
     [self loadData];
     [self setupViews];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.listWasEdited) {
+        [self.delegate wasEditedList:self.list];
+    }
 }
 
 #pragma mark - Methods
@@ -83,6 +93,8 @@ static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
             [self.tasks addObject:newTask];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.tasks count] - 1 inSection:0];
             [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            
+            self.listWasEdited = YES;
         }
         [alertController dismissViewControllerAnimated:YES completion:nil];
     }];
@@ -116,6 +128,7 @@ static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
     task.isChecked = !task.isChecked;
     [self.tasks replaceObjectAtIndex:indexPath.row withObject:task];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    self.listWasEdited = YES;
 }
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -156,6 +169,7 @@ static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
         [Task removeTaskWithId:task.taskId];
         [self.tasks removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        self.listWasEdited = YES;
     }];
     deleteAction.backgroundColor = UIColor.redColor;
     return @[deleteAction, editAction];

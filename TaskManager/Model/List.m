@@ -24,6 +24,8 @@
         _title = title;
         _iconId = iconId;
         _colorId = colorId;
+        
+        _uncheckedTasksCount = 0;
 
         _color = [Color loadColorWithId:colorId];
         _icon = [Icon loadIconWithId:iconId];
@@ -76,6 +78,19 @@
     [DatabaseManager executeQuery:query];
     query = [NSString stringWithFormat:@"DELETE FROM lists WHERE id = %lu", listId];
     [DatabaseManager executeQuery:query];
+}
+
++ (NSInteger)getCountUncheckedTasksForListId:(NSUInteger)listId {
+    DatabaseManager *databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename:kDatabaseFilename];
+    NSString *query = [NSString stringWithFormat:@"SELECT COUNT(id) FROM tasks WHERE listId = %lu AND isChecked = %d", listId, false];
+    NSMutableArray *objects = [[NSMutableArray alloc] initWithArray:[databaseManager loadDataFromDB:query]];
+    NSUInteger count = 0;
+    
+    if ([objects count] != 0) {
+        count = [[objects firstObject][0] integerValue];
+    }
+    
+    return count;
 }
 
 @end

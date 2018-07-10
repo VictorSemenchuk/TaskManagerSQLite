@@ -9,10 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "List.h"
 
+@protocol ListTableViewControllerDelegate <NSObject>
+
+- (void)wasEditedList:(List *)list;
+
+@end
+
 @interface ListTableViewController : UITableViewController
 
 @property (nonatomic) NSMutableArray *tasks;
 @property (nonatomic) List *list;
+@property (weak, nonatomic) id<ListTableViewControllerDelegate>delegate;
 
 - initWithList:(List *)list;
 

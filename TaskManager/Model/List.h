@@ -18,6 +18,8 @@
 @property (assign, nonatomic) NSUInteger iconId;
 @property (assign, nonatomic) NSUInteger colorId;
 
+@property (assign, nonatomic) NSInteger uncheckedTasksCount;
+
 @property (nonatomic) Icon *icon;
 @property (nonatomic) Color *color;
 
@@ -26,5 +28,6 @@
 + (NSMutableArray *)loadAllLists;
 + (List *)loadListWithId:(NSUInteger)listId;
 + (void)removeListWithId:(NSUInteger)listId;
++ (NSInteger)getCountUncheckedTasksForListId:(NSUInteger)listId;
 
 @end
