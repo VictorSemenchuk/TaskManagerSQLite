@@ -10,7 +10,7 @@
 
 @interface Icon : NSObject
 
-@property (nonatomic) NSUInteger iconId;
+@property (assign, nonatomic) NSUInteger iconId;
 @property (nonatomic) NSString *path;
 
 - (id)initWithId:(NSUInteger)iconId andPath:(NSString *)path;

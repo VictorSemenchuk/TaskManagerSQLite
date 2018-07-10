@@ -12,6 +12,7 @@
 @interface ListItemTableViewCell ()
 
 @property (nonatomic) UILabel *titleLabel;
+@property (nonatomic) UILabel *subtitleLabel;
 @property (nonatomic) UIImageView *checkImageView;
 
 - (void)setupViews;
@@ -38,6 +39,18 @@
     return _titleLabel;
 }
 
+- (UILabel *)subtitleLabel {
+    if (!_subtitleLabel) {
+        _subtitleLabel = [[UILabel alloc] init];
+        _subtitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _subtitleLabel.font = [UIFont systemFontOfSize:12.0];
+        _subtitleLabel.textAlignment = NSTextAlignmentLeft;
+        _subtitleLabel.textColor = UIColor.redColor;
+        _subtitleLabel.text = @"Subtitle";
+    }
+    return _subtitleLabel;
+}
+
 - (UIImageView *)checkImageView {
     if (!_checkImageView) {
         _checkImageView = [[UIImageView alloc] init];
@@ -60,19 +73,43 @@
                                               [self.checkImageView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]
                                               ]];
     
-    //titleLabel
-    [self addSubview:self.titleLabel];
+    //stackView
+    UIStackView *stackView = [[UIStackView alloc] init];
+    stackView.translatesAutoresizingMaskIntoConstraints = false;
+    stackView.axis = UILayoutConstraintAxisVertical;
+    stackView.spacing = 3.0;
+    
+    [self addSubview:stackView];
     [NSLayoutConstraint activateConstraints:@[
-                                              [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:10.0],
-                                              [self.titleLabel.heightAnchor constraintEqualToConstant:20.0],
-                                              [self.titleLabel.centerYAnchor constraintEqualToAnchor:self.centerYAnchor],
-                                              [self.titleLabel.trailingAnchor constraintEqualToAnchor:self.trailingAnchor]
-                                              ]];
+                                              [stackView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:10.0],
+                                              [stackView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-10.0],
+                                              [stackView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]]];
+    
+    [stackView addArrangedSubview:self.titleLabel];
+    [stackView addArrangedSubview:self.subtitleLabel];
     
 }
 
 - (void)setAttributesForTask:(Task *)task andList:(List *)list {
     self.titleLabel.text = task.text;
+    
+    self.subtitleLabel.hidden = ((task.priority > 0) && (task.priority < 4)) ? NO : YES;
+    
+    switch (task.priority) {
+        case 1:
+            self.subtitleLabel.text = @"!";
+            break;
+        case 2:
+            self.subtitleLabel.text = @"!!";
+            break;
+        case 3:
+            self.subtitleLabel.text = @"!!!";
+            break;
+        default:
+            self.subtitleLabel.hidden = YES;
+            break;
+    }
+    
     self.checkImageView.hidden = !task.isChecked;
     self.checkImageView.tintColor = list.color.color;
 }

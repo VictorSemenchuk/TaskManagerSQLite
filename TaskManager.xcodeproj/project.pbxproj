@@ -12,6 +12,10 @@
 		DA7C05CD20F34BFF008F42F7 /* Icon.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7C05CC20F34BFF008F42F7 /* Icon.m */; };
 		DA7C05D020F35656008F42F7 /* Color.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7C05CF20F35656008F42F7 /* Color.m */; };
 		DA7C05D620F388A0008F42F7 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7C05D520F388A0008F42F7 /* Task.m */; };
+		EFD3D62720F5342B0029837B /* AddTaskTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD3D62620F5342B0029837B /* AddTaskTableViewController.m */; };
+		EFD3D62A20F5428F0029837B /* EditTaskTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD3D62920F5428F0029837B /* EditTaskTableViewController.m */; };
+		EFD3D62D20F544920029837B /* EditingTaskTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD3D62C20F544920029837B /* EditingTaskTableViewController.m */; };
+		EFD3D63020F54AD10029837B /* SegmentControlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD3D62F20F54AD10029837B /* SegmentControlTableViewCell.m */; };
 		EFFADD0E20F09C5D00A775E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFADD0D20F09C5D00A775E6 /* AppDelegate.m */; };
 		EFFADD1620F09C6000A775E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFFADD1520F09C6000A775E6 /* Assets.xcassets */; };
 		EFFADD1920F09C6000A775E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFFADD1720F09C6000A775E6 /* LaunchScreen.storyboard */; };
@@ -42,6 +46,14 @@
 		DA7C05CF20F35656008F42F7 /* Color.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Color.m; sourceTree = "<group>"; };
 		DA7C05D420F388A0008F42F7 /* Task.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
 		DA7C05D520F388A0008F42F7 /* Task.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		EFD3D62520F5342B0029837B /* AddTaskTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTaskTableViewController.h; sourceTree = "<group>"; };
+		EFD3D62620F5342B0029837B /* AddTaskTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTaskTableViewController.m; sourceTree = "<group>"; };
+		EFD3D62820F5428F0029837B /* EditTaskTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditTaskTableViewController.h; sourceTree = "<group>"; };
+		EFD3D62920F5428F0029837B /* EditTaskTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditTaskTableViewController.m; sourceTree = "<group>"; };
+		EFD3D62B20F544920029837B /* EditingTaskTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditingTaskTableViewController.h; sourceTree = "<group>"; };
+		EFD3D62C20F544920029837B /* EditingTaskTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditingTaskTableViewController.m; sourceTree = "<group>"; };
+		EFD3D62E20F54AD10029837B /* SegmentControlTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegmentControlTableViewCell.h; sourceTree = "<group>"; };
+		EFD3D62F20F54AD10029837B /* SegmentControlTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SegmentControlTableViewCell.m; sourceTree = "<group>"; };
 		EFFADD0920F09C5D00A775E6 /* TaskManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFFADD0C20F09C5D00A775E6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EFFADD0D20F09C5D00A775E6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -138,6 +150,12 @@
 				EFFADD2820F0A79800A775E6 /* NewListTableViewController.m */,
 				DA7C05C520F33D19008F42F7 /* ListTableViewController.h */,
 				DA7C05C620F33D19008F42F7 /* ListTableViewController.m */,
+				EFD3D62B20F544920029837B /* EditingTaskTableViewController.h */,
+				EFD3D62C20F544920029837B /* EditingTaskTableViewController.m */,
+				EFD3D62520F5342B0029837B /* AddTaskTableViewController.h */,
+				EFD3D62620F5342B0029837B /* AddTaskTableViewController.m */,
+				EFD3D62820F5428F0029837B /* EditTaskTableViewController.h */,
+				EFD3D62920F5428F0029837B /* EditTaskTableViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -166,6 +184,8 @@
 				EFFADD4C20F1020A00A775E6 /* ListTableViewCell.m */,
 				DA7C05C820F33E1E008F42F7 /* ListItemTableViewCell.h */,
 				DA7C05C920F33E1E008F42F7 /* ListItemTableViewCell.m */,
+				EFD3D62E20F54AD10029837B /* SegmentControlTableViewCell.h */,
+				EFD3D62F20F54AD10029837B /* SegmentControlTableViewCell.m */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -283,16 +303,20 @@
 				EFFADD2920F0A79800A775E6 /* NewListTableViewController.m in Sources */,
 				DA7C05D020F35656008F42F7 /* Color.m in Sources */,
 				EFFADD2620F09D3100A775E6 /* ListsTableViewController.m in Sources */,
+				EFD3D62720F5342B0029837B /* AddTaskTableViewController.m in Sources */,
 				EFFADD3020F0C0B100A775E6 /* IconsCollectionTableViewCell.m in Sources */,
 				EFFADD3C20F0D29A00A775E6 /* ColorCollectionViewCell.m in Sources */,
 				EFFADD3920F0C7A900A775E6 /* IconCollectionViewCell.m in Sources */,
+				EFD3D62A20F5428F0029837B /* EditTaskTableViewController.m in Sources */,
 				EFFADD3F20F0D44E00A775E6 /* ColorsCollectionTableViewCell.m in Sources */,
 				EFFADD1C20F09C6000A775E6 /* main.m in Sources */,
+				EFD3D63020F54AD10029837B /* SegmentControlTableViewCell.m in Sources */,
 				EFFC3BCC20F28F0D00B46116 /* DatabaseManager.m in Sources */,
 				EFFADD2D20F0AFC700A775E6 /* EditableTableViewCell.m in Sources */,
 				EFFADD3620F0C58200A775E6 /* CollectionTableViewCell.m in Sources */,
 				EFFADD4D20F1020A00A775E6 /* ListTableViewCell.m in Sources */,
 				EFFADD0E20F09C5D00A775E6 /* AppDelegate.m in Sources */,
+				EFD3D62D20F544920029837B /* EditingTaskTableViewController.m in Sources */,
 				EFFADD4720F0F7D300A775E6 /* FeatureCollectionViewCell.m in Sources */,
 				DA7C05CD20F34BFF008F42F7 /* Icon.m in Sources */,
 				DA7C05C720F33D19008F42F7 /* ListTableViewController.m in Sources */,

@@ -11,11 +11,11 @@
 
 @interface Color : NSObject
 
-@property (nonatomic) NSUInteger colorId;
-@property (nonatomic) NSUInteger red;
-@property (nonatomic) NSUInteger green;
-@property (nonatomic) NSUInteger blue;
-@property (nonatomic) NSUInteger alpha;
+@property (assign, nonatomic) NSUInteger colorId;
+@property (assign, nonatomic) NSUInteger red;
+@property (assign, nonatomic) NSUInteger green;
+@property (assign, nonatomic) NSUInteger blue;
+@property (assign, nonatomic) NSUInteger alpha;
 
 @property (nonatomic) UIColor *color;
 

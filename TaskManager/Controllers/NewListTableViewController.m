@@ -22,8 +22,8 @@ static NSString * const kColorsCollectionCellIdentifier = @"ColorsCollectionCell
 
 @property (nonatomic) NSMutableArray *icons;
 @property (nonatomic) NSMutableArray *colors;
-@property (nonatomic, assign) NSUInteger selectedIconId;
-@property (nonatomic, assign) NSUInteger selectedColorId;
+@property (assign, nonatomic) NSUInteger selectedIconId;
+@property (assign, nonatomic) NSUInteger selectedColorId;
 @property (nonatomic) NSString *listTitle;
 
 - (void)loadData;

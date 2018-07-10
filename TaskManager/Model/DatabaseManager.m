@@ -52,7 +52,7 @@
         if (resultCode == 1) {
             return;
         }
-        query = @"CREATE TABLE tasks (id integer PRIMARY KEY AUTOINCREMENT, listId integet NOT NULL, text text NOT NULL, isChecked boolean NOT NULL)";
+        query = @"CREATE TABLE tasks (id integer PRIMARY KEY AUTOINCREMENT, listId integet NOT NULL, text text NOT NULL, isChecked boolean NOT NULL, priority integer NOT NULL)";
         resultCode = [self createTableWithName:@"tasks" query:query database:database];
         if (resultCode == 1) {
             return;
