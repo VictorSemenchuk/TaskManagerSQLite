@@ -191,4 +191,19 @@
     [databaseManager executeQuery:query];
 }
 
++ (NSUInteger)getLastIdForList:(NSString *)list {
+    DatabaseManager *databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename:kDatabaseFilename];
+    NSString *query = [NSString stringWithFormat:@"SELECT id FROM %@ WHERE id = (SELECT MAX(id) FROM %@)", list, list];
+    NSMutableArray *objects = [[NSMutableArray alloc] initWithArray:[databaseManager loadDataFromDB:query]];
+    NSUInteger lastId = 0;
+    
+    NSUInteger indexOfId = [databaseManager.arrColumnNames indexOfObject:@"id"];
+    
+    if ([objects count] != 0) {
+        lastId = [[objects firstObject][indexOfId] integerValue];
+    }
+    
+    return lastId;
+}
+
 @end

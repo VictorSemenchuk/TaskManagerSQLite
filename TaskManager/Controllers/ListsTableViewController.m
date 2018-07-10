@@ -107,8 +107,13 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 
 #pragma mark - NewListTableViewControllerDelegate
 
-- (void)newListAdded {
-    [self loadData];
+- (void)newListAddedWithTitle:(NSString *)title colorId:(NSUInteger)colorId iconId:(NSUInteger)iconId {
+    //[self loadData];
+    NSUInteger newListId = [DatabaseManager getLastIdForList:@"lists"];
+    List *newList = [[List alloc] initWithId:newListId title:title iconId:iconId colorId:colorId];
+    [self.lists addObject:newList];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.lists count] - 1 inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
 }
 
 @end

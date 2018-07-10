@@ -10,7 +10,7 @@
 
 @protocol NewListTableViewControllerDelegate <NSObject>
 
-- (void)newListAdded;
+- (void)newListAddedWithTitle:(NSString *)title colorId:(NSUInteger)colorId iconId:(NSUInteger)iconId;
 
 @end
 

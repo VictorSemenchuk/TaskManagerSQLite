@@ -18,5 +18,6 @@ static NSString * const kDatabaseFilename = @"database.db";
 - (NSArray *)loadDataFromDB:(NSString *)query;
 - (void)executeQuery:(NSString *)query;
 + (void)executeQuery:(NSString *)query;
++ (NSUInteger)getLastIdForList:(NSString *)query;
 
 @end

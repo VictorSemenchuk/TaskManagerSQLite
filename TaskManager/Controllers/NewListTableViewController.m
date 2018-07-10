@@ -77,7 +77,7 @@ static NSString * const kColorsCollectionCellIdentifier = @"ColorsCollectionCell
     } else {
         NSLog(@"Title: %@, iconId: %lu, colorId: %lu", self.listTitle, self.selectedIconId, self.selectedColorId);
         [List addNewListWithTitle:self.listTitle iconId:self.selectedIconId colorId:self.selectedColorId];
-        [self.delegate newListAdded];
+        [self.delegate newListAddedWithTitle:self.listTitle colorId:self.selectedColorId iconId:self.selectedIconId];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

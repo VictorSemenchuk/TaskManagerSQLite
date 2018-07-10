@@ -8,6 +8,7 @@
 
 #import "ListTableViewController.h"
 #import "ListItemTableViewCell.h"
+#import "DatabaseManager.h"
 
 static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
 
@@ -76,7 +77,12 @@ static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
             return;
         } else {
             [Task addNewTaskWithText:text andListId:self.list.listId];
-            [self loadData];
+            
+            NSUInteger newTaskId = [DatabaseManager getLastIdForList:@"tasks"];
+            Task *newTask = [[Task alloc] initWithId:newTaskId listId:self.list.listId text:text isChecked:NO];
+            [self.tasks addObject:newTask];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.tasks count] - 1 inSection:0];
+            [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
         }
         [alertController dismissViewControllerAnimated:YES completion:nil];
     }];
@@ -107,7 +113,9 @@ static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Task *task = self.tasks[indexPath.row];
     [Task updateCheckForTaskWithId:task.taskId oldValue:task.isChecked];
-    [self loadData];
+    task.isChecked = !task.isChecked;
+    [self.tasks replaceObjectAtIndex:indexPath.row withObject:task];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -130,7 +138,10 @@ static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
                 return;
             } else {
                 [Task updateTaskWithId:task.taskId text:text];
-                [self loadData];
+                Task *task = self.tasks[indexPath.row];
+                task.text = text;
+                [self.tasks replaceObjectAtIndex:indexPath.row withObject:task];
+                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             }
             [alertController dismissViewControllerAnimated:YES completion:nil];
         }];
