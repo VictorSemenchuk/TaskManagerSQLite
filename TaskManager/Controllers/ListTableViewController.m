@@ -122,36 +122,6 @@ static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Edit" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-
-//        Task *task = self.tasks[indexPath.row];
-//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Edit task" message:@"Change text of your task" preferredStyle:UIAlertControllerStyleAlert];
-//
-//        [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-//            textField.text = task.text;
-//            textField.keyboardType = UIKeyboardTypeDefault;
-//        }];
-//
-//        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//            [alertController dismissViewControllerAnimated:YES completion:nil];
-//        }];
-//        UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//            NSString *text = alertController.textFields.firstObject.text;
-//            if ([text isEqualToString:@""] || text == nil) {
-//                return;
-//            } else {
-////                [Task updateTaskWithId:task.taskId text:text];
-////                Task *task = self.tasks[indexPath.row];
-////                task.text = text;
-////                [self.tasks replaceObjectAtIndex:indexPath.row withObject:task];
-////                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//            }
-//            [alertController dismissViewControllerAnimated:YES completion:nil];
-//        }];
-//
-//        [alertController addAction:doneAction];
-//        [alertController addAction:cancelAction];
-//
-//        [self presentViewController:alertController animated:YES completion:nil];
         
         Task *task = self.tasks[indexPath.row];
         EditTaskTableViewController *vc = [[EditTaskTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
