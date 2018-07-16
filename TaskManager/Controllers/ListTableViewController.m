@@ -8,9 +8,9 @@
 
 #import "ListTableViewController.h"
 #import "ListItemTableViewCell.h"
-#import "DatabaseManager.h"
 #import "AddTaskTableViewController.h"
 #import "EditTaskTableViewController.h"
+#import "TaskSQLiteService.h"
 
 static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
 
@@ -65,7 +65,8 @@ static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
         [self.tasks removeAllObjects];
         self.tasks = nil;
     }
-    self.tasks = [[NSMutableArray alloc] initWithArray:[Task loadTasksForListWithId:self.list.listId]];
+    TaskSQLiteService *taskSQLiteService = [[TaskSQLiteService alloc] init];
+    self.tasks = [[NSMutableArray alloc] initWithArray:[taskSQLiteService loadTasksForListWithId:self.list.listId]];
     [self.tableView reloadData];
 }
 
@@ -112,8 +113,9 @@ static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    TaskSQLiteService *taskSQLiteService = [[TaskSQLiteService alloc] init];
     Task *task = self.tasks[indexPath.row];
-    [Task updateCheckForTaskWithId:task.taskId oldValue:task.isChecked];
+    [taskSQLiteService updateCheckForTaskWithId:task.taskId oldValue:task.isChecked];
     task.isChecked = !task.isChecked;
     [self.tasks replaceObjectAtIndex:indexPath.row withObject:task];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -132,8 +134,9 @@ static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
         
     }];
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        TaskSQLiteService *taskSQLiteService = [[TaskSQLiteService alloc] init];
         Task *task = self.tasks[indexPath.row];
-        [Task removeTaskWithId:task.taskId];
+        [taskSQLiteService removeTaskWithId:task.taskId];
         [self.tasks removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         self.listWasEdited = YES;

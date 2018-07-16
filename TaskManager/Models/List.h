@@ -24,10 +24,5 @@
 @property (nonatomic) Color *color;
 
 - (id)initWithId:(NSUInteger)listId title:(NSString *)title iconId:(NSUInteger)iconId colorId:(NSUInteger)colorId;
-+ (void)addNewListWithTitle:(NSString *)title iconId:(NSUInteger)iconId colorId:(NSUInteger)colorId;
-+ (NSMutableArray *)loadAllLists;
-+ (List *)loadListWithId:(NSUInteger)listId;
-+ (void)removeListWithId:(NSUInteger)listId;
-+ (NSInteger)getCountUncheckedTasksForListId:(NSUInteger)listId;
 
 @end

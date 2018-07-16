@@ -1,41 +1,16 @@
 //
-//  Task.m
+//  TaskService.m
 //  TaskManager
 //
-//  Created by Viktar Semianchuk on 7/9/18.
+//  Created by Viktar Semianchuk on 7/16/18.
 //  Copyright © 2018 Victor Semenchuk. All rights reserved.
 //
 
-#import "Task.h"
-#import "DatabaseManager.h"
+#import "TaskSQLiteService.h"
 
-@implementation Task
+@implementation TaskSQLiteService
 
-- (id)initWithId:(NSUInteger)taskId listId:(NSUInteger)listId text:(NSString *)text isChecked:(BOOL)isChecked {
-    self = [super init];
-    if (self) {
-        _listId = listId;
-        _taskId = taskId;
-        _text = text;
-        _isChecked = isChecked;
-    }
-    return self;
-}
-
-- (id)initWithId:(NSUInteger)taskId listId:(NSUInteger)listId text:(NSString *)text isChecked:(BOOL)isChecked priority:(NSUInteger)priority {
-    self = [super init];
-    if (self) {
-        _listId = listId;
-        _taskId = taskId;
-        _text = text;
-        _isChecked = isChecked;
-        _priority = priority;
-    }
-    return self;
-}
-
-+ (NSMutableArray *)loadTasksForListWithId:(NSUInteger)listId {
-    
+- (NSMutableArray *)loadTasksForListWithId:(NSUInteger)listId {
     DatabaseManager *databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename: kDatabaseFilename];
     NSMutableArray *tasks = [[NSMutableArray alloc] init];
     
@@ -58,27 +33,27 @@
     }
     
     return tasks;
-    
 }
 
-+ (void)addNewTaskWithText:(NSString *)text priority:(NSUInteger)priority andListId:(NSUInteger)listId {
+- (void)addNewTaskWithText:(NSString *)text priority:(NSUInteger)priority andListId:(NSUInteger)listId {
     NSString *query = [NSString stringWithFormat:@"INSERT INTO tasks (listId, text, isChecked, priority) VALUES (%lu, '%@', %d, %lu)", listId, text, false, priority];
     [DatabaseManager executeQuery:query];
 }
 
-+ (void)updateCheckForTaskWithId:(NSUInteger)taskId oldValue:(BOOL)isChecked {
+- (void)updateCheckForTaskWithId:(NSUInteger)taskId oldValue:(BOOL)isChecked {
     NSString *query = [NSString stringWithFormat:@"UPDATE tasks SET isChecked = %d WHERE id = %lu", !isChecked, taskId];
     [DatabaseManager executeQuery:query];
 }
 
-+ (void)removeTaskWithId:(NSUInteger)taskId {
+- (void)removeTaskWithId:(NSUInteger)taskId {
     NSString *query = [NSString stringWithFormat:@"DELETE FROM tasks WHERE id = %lu", taskId];
     [DatabaseManager executeQuery:query];
 }
 
-+ (void)updateTaskWithId:(NSUInteger)taskId text:(NSString *)text priority:(NSUInteger)priority {
+- (void)updateTaskWithId:(NSUInteger)taskId text:(NSString *)text priority:(NSUInteger)priority {
     NSString *query = [NSString stringWithFormat:@"UPDATE tasks SET text = '%@', priority = %lu WHERE id = %lu", text, priority, taskId];
     [DatabaseManager executeQuery:query];
 }
+
 
 @end

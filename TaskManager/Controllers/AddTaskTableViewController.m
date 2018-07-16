@@ -8,6 +8,7 @@
 
 #import "AddTaskTableViewController.h"
 #import "DatabaseManager.h"
+#import "TaskSQLiteService.h"
 
 @implementation AddTaskTableViewController
 
@@ -25,7 +26,8 @@
     if ([self.text isEqualToString:@""] || self.text == nil) {
         return;
     } else {
-        [Task addNewTaskWithText:self.text priority:self.priority andListId:self.list.listId];
+        TaskSQLiteService *taskSQLiteService = [[TaskSQLiteService alloc] init];
+        [taskSQLiteService addNewTaskWithText:self.text priority:self.priority andListId:self.list.listId];
         NSUInteger newTaskId = [DatabaseManager getLastIdForList:@"tasks"];
         Task *newTask = [[Task alloc] initWithId:newTaskId listId:self.list.listId text:self.text isChecked:NO priority:self.priority];
         [self.delegate addedTask:newTask];

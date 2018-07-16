@@ -8,8 +8,8 @@
 
 #import "DatabaseManager.h"
 #import <sqlite3.h>
-#import "Color.h"
-#import "Icon.h"
+#import "ColorSQLiteService.h"
+#import "IconSQLiteService.h"
 
 @interface DatabaseManager ()
 
@@ -85,28 +85,21 @@
 }
 
 - (void)fillInitialData {
-    
     //initial Colors
-    [Color addColorWithRed:90 green:200 blue:250 alpha:255];
-    [Color addColorWithRed:255 green:204 blue:0 alpha:255];
-    [Color addColorWithRed:255 green:149 blue:0 alpha:255];
-    [Color addColorWithRed:255 green:45 blue:85 alpha:255];
-    [Color addColorWithRed:76 green:217 blue:100 alpha:255];
-    [Color addColorWithRed:255 green:59 blue:48 alpha:255];
+    ColorSQLiteService *colorSQLiteService = [[ColorSQLiteService alloc] init];
+    [colorSQLiteService addColorWithRed:90 green:200 blue:250 alpha:255];
+    [colorSQLiteService addColorWithRed:255 green:204 blue:0 alpha:255];
+    [colorSQLiteService addColorWithRed:255 green:149 blue:0 alpha:255];
+    [colorSQLiteService addColorWithRed:255 green:45 blue:85 alpha:255];
+    [colorSQLiteService addColorWithRed:76 green:217 blue:100 alpha:255];
+    [colorSQLiteService addColorWithRed:255 green:59 blue:48 alpha:255];
     
     //initial Icons
-    [Icon addIconWithPath:@"icon1"];
-    [Icon addIconWithPath:@"icon2"];
-    [Icon addIconWithPath:@"icon3"];
-    [Icon addIconWithPath:@"icon4"];
-    [Icon addIconWithPath:@"icon5"];
-    [Icon addIconWithPath:@"icon6"];
-    [Icon addIconWithPath:@"icon7"];
-    [Icon addIconWithPath:@"icon8"];
-    [Icon addIconWithPath:@"icon9"];
-    [Icon addIconWithPath:@"icon10"];
-    [Icon addIconWithPath:@"icon11"];
-    [Icon addIconWithPath:@"icon12"];
+    IconSQLiteService *iconSQLiteService = [[IconSQLiteService alloc] init];
+    for (int i = 1; i <= 12; i++) {
+        NSString *path = [NSString stringWithFormat:@"icon%d", i];
+        [iconSQLiteService addIconWithPath:path];
+    }
 }
 
 - (void)runQuery:(const char *)query isQueryExecutable:(BOOL)queryExecutable {

@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString * const kDatabaseFilename = @"database.db";
+static NSString * const kDatabaseFilename = @"TaskManager.sqlite";
+
+typedef enum {
+    kSQLite,
+    kCoreData
+} PersistentType;
 
 @interface DatabaseManager : NSObject
 

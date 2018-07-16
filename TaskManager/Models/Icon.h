@@ -14,8 +14,5 @@
 @property (nonatomic) NSString *path;
 
 - (id)initWithId:(NSUInteger)iconId andPath:(NSString *)path;
-+ (NSMutableArray *)loadAllIcons;
-+ (Icon *)loadIconWithId:(NSUInteger)iconId;
-+ (void)addIconWithPath:(NSString *)path;
 
 @end

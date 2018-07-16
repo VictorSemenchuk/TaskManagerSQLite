@@ -111,7 +111,7 @@
     }
     
     self.checkImageView.hidden = !task.isChecked;
-    self.checkImageView.tintColor = list.color.color;
+    //self.checkImageView.tintColor = [list.color color];
 }
 
 @end

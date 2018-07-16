@@ -7,6 +7,7 @@
 //
 
 #import "EditTaskTableViewController.h"
+#import "TaskSQLiteService.h"
 
 @interface EditTaskTableViewController ()
 
@@ -38,7 +39,8 @@
     if ([self.text isEqualToString:@""] || self.text == nil) {
         return;
     } else {
-        [Task updateTaskWithId:self.task.taskId text:self.text priority:self.priority];
+        TaskSQLiteService *taskSQLiteService = [[TaskSQLiteService alloc] init];
+        [taskSQLiteService updateTaskWithId:self.task.taskId text:self.text priority:self.priority];
         self.task.text = self.text;
         self.task.priority = self.priority;
         [self.delegate changedTask:self.task atIndexPath:self.indexPath];

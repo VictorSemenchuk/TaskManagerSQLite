@@ -1,53 +1,42 @@
 //
-//  Icon.m
+//  IconService.m
 //  TaskManager
 //
-//  Created by Viktar Semianchuk on 7/9/18.
+//  Created by Viktar Semianchuk on 7/16/18.
 //  Copyright © 2018 Victor Semenchuk. All rights reserved.
 //
 
-#import "Icon.h"
-#import "DatabaseManager.h"
+#import "IconSQLiteService.h"
 
-@interface Icon ()
+@interface IconSQLiteService ()
 
-+ (NSMutableArray *)loadDataWithQuery:(NSString *)query;
+- (NSMutableArray *)loadDataWithQuery:(NSString *)query;
 
 @end
 
-@implementation Icon
+@implementation IconSQLiteService
 
-- (id)initWithId:(NSUInteger)iconId andPath:(NSString *)path {
-    self = [super init];
-    if (self) {
-        _iconId = iconId;
-        _path = path;
-    }
-    return self;
-}
-
-+ (void)addIconWithPath:(NSString *)path {
+- (void)addIconWithPath:(NSString *)path {
     NSString *query = [NSString stringWithFormat:@"INSERT INTO icons (path) VALUES ('%@')", path];
     [DatabaseManager executeQuery:query];
 }
 
-+ (NSMutableArray *)loadAllIcons {
+- (NSMutableArray *)loadAllIcons {
     NSString *query = @"SELECT * FROM icons";
-    NSMutableArray *icons = [Icon loadDataWithQuery:query];
+    NSMutableArray *icons = [self loadDataWithQuery:query];
     return icons;
 }
 
-+ (Icon *)loadIconWithId:(NSUInteger)iconId {
+- (Icon *)loadIconWithId:(NSUInteger)iconId {
     NSString *query = [NSString stringWithFormat:@"SELECT * FROM icons WHERE id = %lu", iconId];
-    Icon* icon = [Icon loadDataWithQuery:query][0];
+    Icon* icon = [self loadDataWithQuery:query][0];
     return icon;
 }
 
-+ (NSMutableArray *)loadDataWithQuery:(NSString *)query {
-    
+- (NSMutableArray *)loadDataWithQuery:(NSString *)query {
     DatabaseManager *databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename:kDatabaseFilename];
     NSMutableArray *icons = [[NSMutableArray alloc] init];
-
+    
     NSMutableArray *objects = [[NSMutableArray alloc] initWithArray:[databaseManager loadDataFromDB:query]];
     
     NSInteger indexOfId = [databaseManager.arrColumnNames indexOfObject:@"id"];
@@ -60,7 +49,6 @@
     }
     
     return icons;
-    
 }
 
 @end

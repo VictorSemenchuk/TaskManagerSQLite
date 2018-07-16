@@ -10,9 +10,9 @@
 #import "EditableTableViewCell.h"
 #import "IconsCollectionTableViewCell.h"
 #import "ColorsCollectionTableViewCell.h"
-#import "Color.h"
-#import "Icon.h"
-#import "List.h"
+#import "ColorSQLiteService.h"
+#import "IconSQLiteService.h"
+#import "ListSQLiteService.h"
 
 static NSString * const kNameCellIdentifier = @"NameCellIdentifier";
 static NSString * const kIconsCollectionCellIdentifier = @"IconsCollectionCellIdentifier";
@@ -29,6 +29,7 @@ static NSString * const kColorsCollectionCellIdentifier = @"ColorsCollectionCell
 - (void)loadData;
 - (void)setupViews;
 - (void)done;
+- (void)showErrorAlert;
 
 @end
 
@@ -57,8 +58,11 @@ static NSString * const kColorsCollectionCellIdentifier = @"ColorsCollectionCell
 }
 
 - (void)loadData {
-    self.icons = [[NSMutableArray alloc] initWithArray:[Icon loadAllIcons]];
-    self.colors = [[NSMutableArray alloc] initWithArray:[Color loadAllColors]];
+    IconSQLiteService *iconSQLiteService = [[IconSQLiteService alloc] init];
+    ColorSQLiteService *colorSQLiteService = [[ColorSQLiteService alloc] init];
+    
+    self.icons = [[NSMutableArray alloc] initWithArray:[iconSQLiteService loadAllIcons]];
+    self.colors = [[NSMutableArray alloc] initWithArray:[colorSQLiteService loadAllColors]];
     
     Icon *initialIcon = [self.icons firstObject];
     self.selectedIconId = initialIcon.iconId;
@@ -69,14 +73,23 @@ static NSString * const kColorsCollectionCellIdentifier = @"ColorsCollectionCell
     [self.tableView reloadData];
 }
 
+- (void)showErrorAlert {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"Please, enter title for list" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //hide alert controller
+    }];
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 #pragma mark - Target methods
 
 - (void)done {
     if ([self.listTitle isEqualToString: @""] || self.listTitle == nil) {
         return;
     } else {
-        NSLog(@"Title: %@, iconId: %lu, colorId: %lu", self.listTitle, self.selectedIconId, self.selectedColorId);
-        [List addNewListWithTitle:self.listTitle iconId:self.selectedIconId colorId:self.selectedColorId];
+        ListSQLiteService *listSQLiteService = [[ListSQLiteService alloc] init];
+        [listSQLiteService addNewListWithTitle:self.listTitle iconId:self.selectedIconId colorId:self.selectedColorId];
         [self.delegate newListAddedWithTitle:self.listTitle colorId:self.selectedColorId iconId:self.selectedIconId];
         [self.navigationController popViewControllerAnimated:YES];
     }

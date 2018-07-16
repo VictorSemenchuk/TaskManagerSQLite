@@ -1,55 +1,39 @@
 //
-//  Color.m
+//  ColorService.m
 //  TaskManager
 //
-//  Created by Viktar Semianchuk on 7/9/18.
+//  Created by Viktar Semianchuk on 7/16/18.
 //  Copyright © 2018 Victor Semenchuk. All rights reserved.
 //
 
-#import "Color.h"
-#import "DatabaseManager.h"
+#import "ColorSQLiteService.h"
 
-@interface Color ()
+@interface ColorSQLiteService ()
 
-+ (NSMutableArray *)loadDataWithQuery:(NSString *)query;
+- (NSMutableArray *)loadDataWithQuery:(NSString *)query;
 
 @end
 
-@implementation Color
+@implementation ColorSQLiteService
 
-- (id)initWithId:(NSUInteger)colorId red:(NSUInteger)red green:(NSUInteger)green blue:(NSUInteger)blue alpha:(NSUInteger)alpha {
-    self = [super init];
-    if (self) {
-        _colorId = colorId;
-        _red = red;
-        _green = green;
-        _blue = blue;
-        _alpha = alpha;
-        
-        _color = [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:alpha/255.0];
-    }
-    return self;
-}
-
-+ (NSMutableArray *)loadAllColors {
+- (NSMutableArray *)loadAllColors {
     NSString *query = @"SELECT * FROM colors";
-    NSMutableArray *colors = [Color loadDataWithQuery:query];
+    NSMutableArray *colors = [self loadDataWithQuery:query];
     return colors;
 }
 
-+ (Color *)loadColorWithId:(NSUInteger)colorId {
+- (Color *)loadColorWithId:(NSUInteger)colorId {
     NSString *query = [NSString stringWithFormat:@"SELECT * FROM colors WHERE id = %lu", colorId];
-    Color* color = [Color loadDataWithQuery:query][0];
+    Color* color = [self loadDataWithQuery:query][0];
     return color;
 }
 
-+ (void)addColorWithRed:(NSUInteger)red green:(NSUInteger)green blue:(NSUInteger)blue alpha:(NSUInteger)alpha {
+- (void)addColorWithRed:(NSUInteger)red green:(NSUInteger)green blue:(NSUInteger)blue alpha:(NSUInteger)alpha {
     NSString *query = [NSString stringWithFormat:@"INSERT INTO colors (red, green, blue, alpha) VALUES (%lu, %lu, %lu, %lu)", red, green, blue, alpha];
     [DatabaseManager executeQuery:query];
 }
 
-+ (NSMutableArray *)loadDataWithQuery:(NSString *)query {
-    
+- (NSMutableArray *)loadDataWithQuery:(NSString *)query {
     DatabaseManager *databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename:kDatabaseFilename];
     NSMutableArray *colors = [[NSMutableArray alloc] init];
     
@@ -71,7 +55,6 @@
     }
     
     return colors;
-    
 }
 
 @end
