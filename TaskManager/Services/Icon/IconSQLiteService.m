@@ -16,10 +16,14 @@
 
 @implementation IconSQLiteService
 
-- (void)addIconWithPath:(NSString *)path {
-    NSString *query = [NSString stringWithFormat:@"INSERT INTO icons (path) VALUES ('%@')", path];
+#pragma mark - Adding
+
+- (void)addIconWithPath:(NSString *)path andIconId:(NSUInteger)iconId {
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO icons (id, path) VALUES (%lu, '%@')", iconId, path];
     [DatabaseManager executeQuery:query];
 }
+
+#pragma mark - Loading
 
 - (NSMutableArray *)loadAllIcons {
     NSString *query = @"SELECT * FROM icons";
@@ -34,7 +38,7 @@
 }
 
 - (NSMutableArray *)loadDataWithQuery:(NSString *)query {
-    DatabaseManager *databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename:kDatabaseFilename];
+    DatabaseManager *databaseManager = [[DatabaseManager alloc] init];
     NSMutableArray *icons = [[NSMutableArray alloc] init];
     
     NSMutableArray *objects = [[NSMutableArray alloc] initWithArray:[databaseManager loadDataFromDB:query]];

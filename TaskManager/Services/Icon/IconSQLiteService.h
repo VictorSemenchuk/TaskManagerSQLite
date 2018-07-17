@@ -9,11 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "DatabaseManager.h"
 #import "Icon.h"
+#import "IconServiceProtocol.h"
 
-@interface IconSQLiteService : NSObject
-
-- (NSMutableArray *)loadAllIcons;
-- (Icon *)loadIconWithId:(NSUInteger)iconId;
-- (void)addIconWithPath:(NSString *)path;
+@interface IconSQLiteService : NSObject <IconServiceProtocol>
 
 @end

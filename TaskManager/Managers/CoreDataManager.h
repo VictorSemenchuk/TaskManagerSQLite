@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "PersistentManagerProtocol.h"
 
-@interface CoreDataManager : NSObject
+@interface CoreDataManager : NSObject <PersistentManagerProtocol>
 
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
-- (instancetype)initWithModelName:(NSString *)modelName;
+- (void)fillInitialData;
 
 @end

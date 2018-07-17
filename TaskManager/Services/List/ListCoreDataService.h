@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ListServiceProtocol.h"
 
-@interface ListCoreDataService : NSObject
+@interface ListCoreDataService : NSObject <ListServiceProtocol>
 
 @end

@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IconServiceProtocol.h"
 
-@interface IconCoreDataService : NSObject
+@interface IconCoreDataService : NSObject <IconServiceProtocol>
+
 
 @end

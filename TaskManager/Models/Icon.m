@@ -10,6 +10,9 @@
 
 @implementation Icon
 
+@synthesize iconId = _iconId;
+@synthesize path = _path;
+
 - (id)initWithId:(NSUInteger)iconId andPath:(NSString *)path {
     self = [super init];
     if (self) {

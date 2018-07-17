@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Color.h"
+#import "ColorServiceProtocol.h"
 
-@interface ColorCoreDataService : NSObject
+@interface ColorCoreDataService : NSObject <ColorServiceProtocol>
 
 @end

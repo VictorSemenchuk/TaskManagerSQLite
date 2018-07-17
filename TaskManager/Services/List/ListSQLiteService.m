@@ -18,10 +18,7 @@
 
 @implementation ListSQLiteService
 
-- (void)addNewListWithTitle:(NSString *)title iconId:(NSUInteger)iconId colorId:(NSUInteger)colorId {
-    NSString *query = [NSString stringWithFormat:@"INSERT INTO lists (title, colorId, iconId) VALUES ('%@', %lu, %lu)", title, colorId, iconId];
-    [DatabaseManager executeQuery:query];
-}
+#pragma mark - Loading
 
 - (NSMutableArray *)loadAllLists {
     NSString *query = @"SELECT * FROM lists";
@@ -36,7 +33,7 @@
 }
 
 - (NSMutableArray *)loadDataWithQuery:(NSString *)query {
-    DatabaseManager *databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename: kDatabaseFilename];
+    DatabaseManager *databaseManager = [[DatabaseManager alloc] init];
     NSMutableArray *lists = [[NSMutableArray alloc] init];
     
     NSMutableArray *objects = [[NSMutableArray alloc] initWithArray:[databaseManager loadDataFromDB:query]];
@@ -64,6 +61,20 @@
     return lists;
 }
 
+#pragma mark - Adding
+
+- (NSUInteger)addNewListWithTitle:(NSString *)title iconId:(NSUInteger)iconId colorId:(NSUInteger)colorId {
+    DatabaseManager *databaseManager = [[DatabaseManager alloc] init];
+    NSUInteger newListId = [databaseManager getLastIdForEntity:@"lists"] + 1;
+    
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO lists (id, title, colorId, iconId) VALUES (%lu, '%@', %lu, %lu)", newListId, title, colorId, iconId];
+    [DatabaseManager executeQuery:query];
+    
+    return newListId;
+}
+
+#pragma mark - Removing
+
 - (void)removeListWithId:(NSUInteger)listId {
     NSString *query = [NSString stringWithFormat:@"DELETE FROM tasks WHERE listId = %lu", listId];
     [DatabaseManager executeQuery:query];
@@ -71,8 +82,10 @@
     [DatabaseManager executeQuery:query];
 }
 
+#pragma mark - Other
+
 - (NSInteger)getCountUncheckedTasksForListId:(NSUInteger)listId {
-    DatabaseManager *databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename:kDatabaseFilename];
+    DatabaseManager *databaseManager = [[DatabaseManager alloc] init];
     NSString *query = [NSString stringWithFormat:@"SELECT COUNT(id) FROM tasks WHERE listId = %lu AND isChecked = %d", listId, false];
     NSMutableArray *objects = [[NSMutableArray alloc] initWithArray:[databaseManager loadDataFromDB:query]];
     NSUInteger count = 0;

@@ -10,6 +10,14 @@
 
 @implementation List
 
+@synthesize listId = _listId;
+@synthesize title = _title;
+@synthesize iconId = _iconId;
+@synthesize colorId = _colorId;
+@synthesize uncheckedTasksCount = _uncheckedTasksCount;
+@synthesize color = _color;
+@synthesize icon = _icon;
+
 - (id)initWithId:(NSUInteger)listId title:(NSString *)title iconId:(NSUInteger)iconId colorId:(NSUInteger)colorId {
     self = [super init];
     if (self) {

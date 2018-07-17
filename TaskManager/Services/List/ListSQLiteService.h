@@ -9,13 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "DatabaseManager.h"
 #import "List.h"
+#import "ListServiceProtocol.h"
 
-@interface ListSQLiteService : NSObject
-
-- (void)addNewListWithTitle:(NSString *)title iconId:(NSUInteger)iconId colorId:(NSUInteger)colorId;
-- (NSMutableArray *)loadAllLists;
-- (List *)loadListWithId:(NSUInteger)listId;
-- (void)removeListWithId:(NSUInteger)listId;
-- (NSInteger)getCountUncheckedTasksForListId:(NSUInteger)listId;
+@interface ListSQLiteService : NSObject <ListServiceProtocol>
 
 @end

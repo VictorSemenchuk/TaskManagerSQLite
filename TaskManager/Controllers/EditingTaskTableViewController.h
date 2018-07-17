@@ -11,6 +11,7 @@
 #import "Task.h"
 #import "EditableTableViewCell.h"
 #import "SegmentControlTableViewCell.h"
+#import "TaskService.h"
 
 static NSString * const kTextCellIdentifier = @"TextCellIdentifier";
 static NSString * const kPriorityCellIdentifier = @"PriorityCellIdentifier";

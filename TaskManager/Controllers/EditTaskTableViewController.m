@@ -7,7 +7,6 @@
 //
 
 #import "EditTaskTableViewController.h"
-#import "TaskSQLiteService.h"
 
 @interface EditTaskTableViewController ()
 
@@ -25,7 +24,7 @@
     if (indexPath.section == 0) {
         EditableTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTextCellIdentifier forIndexPath:indexPath];
         cell.delegate = self;
-        cell.textField.text = self.task.text;
+        [cell installText:self.task.text];
         return cell;
     } else {
         SegmentControlTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kPriorityCellIdentifier forIndexPath:indexPath];
@@ -39,8 +38,8 @@
     if ([self.text isEqualToString:@""] || self.text == nil) {
         return;
     } else {
-        TaskSQLiteService *taskSQLiteService = [[TaskSQLiteService alloc] init];
-        [taskSQLiteService updateTaskWithId:self.task.taskId text:self.text priority:self.priority];
+        TaskService *taskService = [[TaskService alloc] init];
+        [taskService updateTaskWithId:self.task.taskId text:self.text priority:self.priority];
         self.task.text = self.text;
         self.task.priority = self.priority;
         [self.delegate changedTask:self.task atIndexPath:self.indexPath];

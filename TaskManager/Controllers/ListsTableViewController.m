@@ -10,8 +10,7 @@
 #import "NewListTableViewController.h"
 #import "ListTableViewCell.h"
 #import "ListTableViewController.h"
-#import "IconSQLiteService.h"
-#import "ListSQLiteService.h"
+#import "ListService.h"
 
 static NSString * const kCellIdentifier = @"CellIdentifier";
 
@@ -42,10 +41,8 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 #pragma mark - Methods
 
 - (void)setupViews {
-    
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Add list" style:UIBarButtonItemStylePlain target:self action:@selector(addList)];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
-    
 }
 
 - (void)loadData {
@@ -53,10 +50,10 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
         [self.lists removeAllObjects];
         self.lists = nil;
     }
-    ListSQLiteService *listSQLiteService = [[ListSQLiteService alloc] init];
-    self.lists = [listSQLiteService loadAllLists];
+    ListService *listService = [[ListService alloc] init];
+    self.lists = [listService loadAllLists];
     for(List *list in self.lists) {
-        NSUInteger uncompletedTasksCount = [listSQLiteService getCountUncheckedTasksForListId:list.listId];
+        NSUInteger uncompletedTasksCount = [listService getCountUncheckedTasksForListId:list.listId];
         list.uncheckedTasksCount = uncompletedTasksCount;
     }
     [self.tableView reloadData];
@@ -92,9 +89,9 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        ListSQLiteService *listSQLiteService = [[ListSQLiteService alloc] init];
+        ListService *listService = [[ListService alloc] init];
         List *list = self.lists[indexPath.row];
-        [listSQLiteService removeListWithId:list.listId];
+        [listService removeListWithId:list.listId];
         [self.lists removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
@@ -111,10 +108,9 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 
 #pragma mark - NewListTableViewControllerDelegate
 
-- (void)newListAddedWithTitle:(NSString *)title colorId:(NSUInteger)colorId iconId:(NSUInteger)iconId {
-    ListSQLiteService *listSQLiteService = [[ListSQLiteService alloc] init];
-    NSUInteger newListId = [DatabaseManager getLastIdForList:@"lists"];
-    List *newList = [listSQLiteService loadListWithId:newListId];
+- (void)newListAddedWithId:(NSUInteger)listId title:(NSString *)title colorId:(NSUInteger)colorId iconId:(NSUInteger)iconId {
+    ListService *listService = [[ListService alloc] init];
+    List *newList = [listService loadListWithId:listId];
     [self.lists addObject:newList];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.lists count] - 1 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];

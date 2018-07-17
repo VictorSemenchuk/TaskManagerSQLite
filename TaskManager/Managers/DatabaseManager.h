@@ -7,22 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PersistentManagerProtocol.h"
 
-static NSString * const kDatabaseFilename = @"TaskManager.sqlite";
-
-typedef enum {
-    kSQLite,
-    kCoreData
-} PersistentType;
-
-@interface DatabaseManager : NSObject
+@interface DatabaseManager : NSObject <PersistentManagerProtocol>
 
 @property (nonatomic) NSMutableArray *arrColumnNames;
 
-- (id)initWithDatabaseFilename:(NSString *)dbFilename;
 - (NSArray *)loadDataFromDB:(NSString *)query;
 - (void)executeQuery:(NSString *)query;
 + (void)executeQuery:(NSString *)query;
-+ (NSUInteger)getLastIdForList:(NSString *)query;
 
 @end

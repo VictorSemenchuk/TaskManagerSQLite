@@ -9,11 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "DatabaseManager.h"
 #import "Color.h"
+#import "ColorServiceProtocol.h"
 
-@interface ColorSQLiteService : NSObject
-
-- (NSMutableArray *)loadAllColors;
-- (Color *)loadColorWithId:(NSUInteger)colorId;
-- (void)addColorWithRed:(NSUInteger)red green:(NSUInteger)green blue:(NSUInteger)blue alpha:(NSUInteger)alpha;
+@interface ColorSQLiteService : NSObject <ColorServiceProtocol>
 
 @end

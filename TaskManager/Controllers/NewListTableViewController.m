@@ -10,9 +10,10 @@
 #import "EditableTableViewCell.h"
 #import "IconsCollectionTableViewCell.h"
 #import "ColorsCollectionTableViewCell.h"
-#import "ColorSQLiteService.h"
-#import "IconSQLiteService.h"
-#import "ListSQLiteService.h"
+#import "ListService.h"
+#import "ColorService.h"
+#import "IconService.h"
+#import "Constants.h"
 
 static NSString * const kNameCellIdentifier = @"NameCellIdentifier";
 static NSString * const kIconsCollectionCellIdentifier = @"IconsCollectionCellIdentifier";
@@ -58,11 +59,11 @@ static NSString * const kColorsCollectionCellIdentifier = @"ColorsCollectionCell
 }
 
 - (void)loadData {
-    IconSQLiteService *iconSQLiteService = [[IconSQLiteService alloc] init];
-    ColorSQLiteService *colorSQLiteService = [[ColorSQLiteService alloc] init];
+    IconService *iconService = [[IconService alloc] init];
+    ColorService *colorService = [[ColorService alloc] init];
     
-    self.icons = [[NSMutableArray alloc] initWithArray:[iconSQLiteService loadAllIcons]];
-    self.colors = [[NSMutableArray alloc] initWithArray:[colorSQLiteService loadAllColors]];
+    self.icons = [[NSMutableArray alloc] initWithArray:[iconService loadAllIcons]];
+    self.colors = [[NSMutableArray alloc] initWithArray:[colorService loadAllColors]];
     
     Icon *initialIcon = [self.icons firstObject];
     self.selectedIconId = initialIcon.iconId;
@@ -88,9 +89,9 @@ static NSString * const kColorsCollectionCellIdentifier = @"ColorsCollectionCell
     if ([self.listTitle isEqualToString: @""] || self.listTitle == nil) {
         return;
     } else {
-        ListSQLiteService *listSQLiteService = [[ListSQLiteService alloc] init];
-        [listSQLiteService addNewListWithTitle:self.listTitle iconId:self.selectedIconId colorId:self.selectedColorId];
-        [self.delegate newListAddedWithTitle:self.listTitle colorId:self.selectedColorId iconId:self.selectedIconId];
+        ListService *listService = [[ListService alloc] init];
+        NSUInteger newListId = [listService addNewListWithTitle:self.listTitle iconId:self.selectedIconId colorId:self.selectedColorId];
+        [self.delegate newListAddedWithId:newListId title:self.listTitle colorId:self.selectedColorId iconId:self.selectedIconId];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

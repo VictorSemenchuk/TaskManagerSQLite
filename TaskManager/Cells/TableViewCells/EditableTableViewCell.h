@@ -19,4 +19,6 @@
 @property (nonatomic) UITextField *textField;
 @property (weak, nonatomic) id<EditableTableViewCellDelegate> delegate;
 
+- (void)installText:(NSString *)text;
+
 @end

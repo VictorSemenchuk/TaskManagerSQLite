@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface Icon : NSObject
+@interface Icon : NSManagedObject
 
 @property (assign, nonatomic) NSUInteger iconId;
 @property (nonatomic) NSString *path;

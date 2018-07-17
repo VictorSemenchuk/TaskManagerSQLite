@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 #import "Icon.h"
 #import "Color.h"
 
-@interface List : NSObject
+@interface List : NSManagedObject
 
 @property (assign, nonatomic) NSUInteger listId;
 @property (nonatomic) NSString *title;

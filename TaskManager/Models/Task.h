@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface Task : NSObject
+@interface Task : NSManagedObject
 
 @property (assign, nonatomic) NSUInteger taskId;
 @property (assign, nonatomic) NSUInteger listId;

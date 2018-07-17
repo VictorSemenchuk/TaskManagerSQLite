@@ -43,6 +43,12 @@
     [self.contentView addSubview:self.textField];
 }
 
+- (void)installText:(NSString *)text {
+    self.textField.text = text;
+}
+
+#pragma mark - Target actions
+
 - (void)didChangeText {
      [self.delegate textChanged:self.textField.text];
 }

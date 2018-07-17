@@ -10,8 +10,10 @@
 
 @implementation TaskSQLiteService
 
+#pragma mark - Loading
+
 - (NSMutableArray *)loadTasksForListWithId:(NSUInteger)listId {
-    DatabaseManager *databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename: kDatabaseFilename];
+    DatabaseManager *databaseManager = [[DatabaseManager alloc] init];
     NSMutableArray *tasks = [[NSMutableArray alloc] init];
     
     NSString *query = [NSString stringWithFormat:@"SELECT * FROM tasks WHERE listId = %lu", listId];
@@ -35,18 +37,29 @@
     return tasks;
 }
 
-- (void)addNewTaskWithText:(NSString *)text priority:(NSUInteger)priority andListId:(NSUInteger)listId {
-    NSString *query = [NSString stringWithFormat:@"INSERT INTO tasks (listId, text, isChecked, priority) VALUES (%lu, '%@', %d, %lu)", listId, text, false, priority];
+#pragma mark - Adding
+
+- (NSUInteger)addNewTaskWithText:(NSString *)text priority:(NSUInteger)priority andListId:(NSUInteger)listId {
+    DatabaseManager *databaseManager = [[DatabaseManager alloc] init];
+    NSUInteger newTaskId = [databaseManager getLastIdForEntity:@"tasks"] + 1;
+    
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO tasks (id, listId, text, isChecked, priority) VALUES (%lu, %lu, '%@', %d, %lu)", newTaskId, listId, text, false, priority];
     [DatabaseManager executeQuery:query];
+    
+    return newTaskId;
 }
 
-- (void)updateCheckForTaskWithId:(NSUInteger)taskId oldValue:(BOOL)isChecked {
-    NSString *query = [NSString stringWithFormat:@"UPDATE tasks SET isChecked = %d WHERE id = %lu", !isChecked, taskId];
-    [DatabaseManager executeQuery:query];
-}
+#pragma mark - Removing
 
 - (void)removeTaskWithId:(NSUInteger)taskId {
     NSString *query = [NSString stringWithFormat:@"DELETE FROM tasks WHERE id = %lu", taskId];
+    [DatabaseManager executeQuery:query];
+}
+
+#pragma mark - Updating
+
+- (void)updateCheckForTaskWithId:(NSUInteger)taskId oldValue:(BOOL)isChecked {
+    NSString *query = [NSString stringWithFormat:@"UPDATE tasks SET isChecked = %d WHERE id = %lu", !isChecked, taskId];
     [DatabaseManager executeQuery:query];
 }
 

@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+#import "TaskServiceProtocol.h"
 
-@interface TaskCoreDataService : NSObject
+@interface TaskCoreDataService : NSObject <TaskServiceProtocol>
 
 @end

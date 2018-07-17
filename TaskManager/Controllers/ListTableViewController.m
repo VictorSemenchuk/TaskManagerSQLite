@@ -10,7 +10,7 @@
 #import "ListItemTableViewCell.h"
 #import "AddTaskTableViewController.h"
 #import "EditTaskTableViewController.h"
-#import "TaskSQLiteService.h"
+#import "TaskService.h"
 
 static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
 
@@ -54,10 +54,8 @@ static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
 #pragma mark - Methods
 
 - (void)setupViews {
-    
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"New task" style:UIBarButtonItemStylePlain target:self action:@selector(newTask)];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
-    
 }
 
 - (void)loadData {
@@ -65,8 +63,8 @@ static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
         [self.tasks removeAllObjects];
         self.tasks = nil;
     }
-    TaskSQLiteService *taskSQLiteService = [[TaskSQLiteService alloc] init];
-    self.tasks = [[NSMutableArray alloc] initWithArray:[taskSQLiteService loadTasksForListWithId:self.list.listId]];
+    TaskService *taskService = [[TaskService alloc] init];
+    self.tasks = [[NSMutableArray alloc] initWithArray:[taskService loadTasksForListWithId:self.list.listId]];
     [self.tableView reloadData];
 }
 
@@ -105,7 +103,6 @@ static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
     return self.tasks.count;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ListItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kListItemCellIdentifier forIndexPath:indexPath];
     [cell setAttributesForTask:self.tasks[indexPath.row] andList:self.list];
@@ -113,9 +110,9 @@ static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    TaskSQLiteService *taskSQLiteService = [[TaskSQLiteService alloc] init];
+    TaskService *taskService = [[TaskService alloc] init];
     Task *task = self.tasks[indexPath.row];
-    [taskSQLiteService updateCheckForTaskWithId:task.taskId oldValue:task.isChecked];
+    [taskService updateCheckForTaskWithId:task.taskId oldValue:task.isChecked];
     task.isChecked = !task.isChecked;
     [self.tasks replaceObjectAtIndex:indexPath.row withObject:task];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -124,19 +121,17 @@ static NSString * const kListItemCellIdentifier = @"kListItemCellIdentifier";
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Edit" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        
         Task *task = self.tasks[indexPath.row];
         EditTaskTableViewController *vc = [[EditTaskTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         vc.task = task;
         vc.indexPath = indexPath;
         vc.delegate = self;
         [self.navigationController pushViewController:vc animated:YES];
-        
     }];
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        TaskSQLiteService *taskSQLiteService = [[TaskSQLiteService alloc] init];
+        TaskService *taskService = [[TaskService alloc] init];
         Task *task = self.tasks[indexPath.row];
-        [taskSQLiteService removeTaskWithId:task.taskId];
+        [taskService removeTaskWithId:task.taskId];
         [self.tasks removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         self.listWasEdited = YES;

@@ -8,13 +8,14 @@
 
 #import "DatabaseManager.h"
 #import <sqlite3.h>
-#import "ColorSQLiteService.h"
-#import "IconSQLiteService.h"
+#import "ColorService.h"
+#import "IconService.h"
+
+static NSString * const kDatabaseFilename = @"TaskManagerSQLite.sqlite";
 
 @interface DatabaseManager ()
 
 @property (nonatomic) NSString *documentsDirectory;
-@property (nonatomic) NSString *databaseFilename;
 @property (nonatomic) NSMutableArray *arrResults;
 
 - (void)createDatabaseIfNeeded;
@@ -26,18 +27,19 @@
 
 @implementation DatabaseManager
 
-- (id)initWithDatabaseFilename:(NSString *)dbFilename {
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.documentsDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-        self.databaseFilename = dbFilename;
         [self createDatabaseIfNeeded];
     }
     return self;
 }
 
+#pragma mark - Creating database
+
 - (void)createDatabaseIfNeeded {
-    NSString *destinationPath = [self.documentsDirectory stringByAppendingPathComponent:self.databaseFilename];
+    NSString *destinationPath = [self.documentsDirectory stringByAppendingPathComponent:kDatabaseFilename];
     NSLog(@"Database destination path: %@", destinationPath);
     sqlite3 *database;
     NSFileManager *fileManager = [[NSFileManager alloc] init];
@@ -47,22 +49,22 @@
     }
     if (sqlite3_open([destinationPath UTF8String], &database) == SQLITE_OK) {
         NSUInteger resultCode = 0;
-        NSString *query = @"CREATE TABLE lists (id integer PRIMARY KEY AUTOINCREMENT, title text NOT NULL, colorId integer NOT NULL, iconId integer NOT NULL)";
+        NSString *query = @"CREATE TABLE lists (id integer PRIMARY KEY, title text NOT NULL, colorId integer NOT NULL, iconId integer NOT NULL)";
         resultCode = [self createTableWithName:@"lists" query:query database:database];
         if (resultCode == 1) {
             return;
         }
-        query = @"CREATE TABLE tasks (id integer PRIMARY KEY AUTOINCREMENT, listId integet NOT NULL, text text NOT NULL, isChecked boolean NOT NULL, priority integer NOT NULL)";
+        query = @"CREATE TABLE tasks (id integer PRIMARY KEY, listId integet NOT NULL, text text NOT NULL, isChecked boolean NOT NULL, priority integer NOT NULL)";
         resultCode = [self createTableWithName:@"tasks" query:query database:database];
         if (resultCode == 1) {
             return;
         }
-        query = @"CREATE TABLE colors (id integer PRIMARY KEY AUTOINCREMENT, red integer NOT NULL, green integer NOT NULL, blue integer NOT NULL, alpha NOT NULL)";
+        query = @"CREATE TABLE colors (id integer PRIMARY KEY, red integer NOT NULL, green integer NOT NULL, blue integer NOT NULL, alpha NOT NULL)";
         resultCode = [self createTableWithName:@"colors" query:query database:database];
         if (resultCode == 1) {
             return;
         }
-        query = @"CREATE TABLE icons (id integer PRIMARY KEY AUTOINCREMENT, path text NOT NULL)";
+        query = @"CREATE TABLE icons (id integer PRIMARY KEY, path text NOT NULL)";
         resultCode = [self createTableWithName:@"icons" query:query database:database];
         if (resultCode == 1) {
             return;
@@ -86,21 +88,24 @@
 
 - (void)fillInitialData {
     //initial Colors
-    ColorSQLiteService *colorSQLiteService = [[ColorSQLiteService alloc] init];
-    [colorSQLiteService addColorWithRed:90 green:200 blue:250 alpha:255];
-    [colorSQLiteService addColorWithRed:255 green:204 blue:0 alpha:255];
-    [colorSQLiteService addColorWithRed:255 green:149 blue:0 alpha:255];
-    [colorSQLiteService addColorWithRed:255 green:45 blue:85 alpha:255];
-    [colorSQLiteService addColorWithRed:76 green:217 blue:100 alpha:255];
-    [colorSQLiteService addColorWithRed:255 green:59 blue:48 alpha:255];
+    ColorService *colorService = [[ColorService alloc] init];
+    NSUInteger colorId = 1;
+    [colorService addColorWithRed:90 green:200 blue:250 alpha:255 colorId:colorId++];
+    [colorService addColorWithRed:255 green:204 blue:0 alpha:255 colorId:colorId++];
+    [colorService addColorWithRed:255 green:149 blue:0 alpha:255 colorId:colorId++];
+    [colorService addColorWithRed:255 green:45 blue:85 alpha:255 colorId:colorId++];
+    [colorService addColorWithRed:76 green:217 blue:100 alpha:255 colorId:colorId++];
+    [colorService addColorWithRed:255 green:59 blue:48 alpha:255 colorId:colorId++];
     
     //initial Icons
-    IconSQLiteService *iconSQLiteService = [[IconSQLiteService alloc] init];
+    IconService *iconService = [[IconService alloc] init];
     for (int i = 1; i <= 12; i++) {
         NSString *path = [NSString stringWithFormat:@"icon%d", i];
-        [iconSQLiteService addIconWithPath:path];
+        [iconService addIconWithPath:path andIconId:i];
     }
 }
+
+#pragma mark - Quering
 
 - (void)runQuery:(const char *)query isQueryExecutable:(BOOL)queryExecutable {
     sqlite3 *db = NULL;
@@ -118,7 +123,7 @@
     }
     self.arrColumnNames = [[NSMutableArray alloc] init];
     
-    NSString *databasePath = [self.documentsDirectory stringByAppendingPathComponent:self.databaseFilename];
+    NSString *databasePath = [self.documentsDirectory stringByAppendingPathComponent:kDatabaseFilename];
     
     resultCode = sqlite3_open([databasePath UTF8String], &db);
     if (resultCode != SQLITE_OK) {
@@ -180,23 +185,22 @@
 }
 
 + (void)executeQuery:(NSString *)query {
-    DatabaseManager *databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename:kDatabaseFilename];
+    DatabaseManager *databaseManager = [[DatabaseManager alloc] init];
     [databaseManager executeQuery:query];
 }
 
-+ (NSUInteger)getLastIdForList:(NSString *)list {
-    DatabaseManager *databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename:kDatabaseFilename];
-    NSString *query = [NSString stringWithFormat:@"SELECT id FROM %@ WHERE id = (SELECT MAX(id) FROM %@)", list, list];
+#pragma mark - Other
+
+- (NSUInteger)getLastIdForEntity:(NSString *)entity {
+    NSUInteger maxId = 0;
+    DatabaseManager *databaseManager = [[DatabaseManager alloc] init];
+    NSString *query = [NSString stringWithFormat:@"SELECT id FROM %@ WHERE id = (SELECT MAX(id) FROM %@)", entity, entity];
     NSMutableArray *objects = [[NSMutableArray alloc] initWithArray:[databaseManager loadDataFromDB:query]];
-    NSUInteger lastId = 0;
-    
     NSUInteger indexOfId = [databaseManager.arrColumnNames indexOfObject:@"id"];
-    
     if ([objects count] != 0) {
-        lastId = [[objects firstObject][indexOfId] integerValue];
+        maxId = [[objects firstObject][indexOfId] integerValue];
     }
-    
-    return lastId;
+    return maxId;
 }
 
 @end

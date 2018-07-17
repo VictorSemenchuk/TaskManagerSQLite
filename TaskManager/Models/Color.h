@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
-@interface Color : NSObject
+@interface Color : NSManagedObject
 
 @property (assign, nonatomic) NSUInteger colorId;
 @property (assign, nonatomic) NSUInteger red;

@@ -10,6 +10,11 @@
 		DA35B1B320FC979A008F216C /* TaskManager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA35B1B120FC979A008F216C /* TaskManager.xcdatamodeld */; };
 		DA35B1C020FC9EB6008F216C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA35B1AE20FC965A008F216C /* CoreData.framework */; };
 		DA35B25F20FCC30A008F216C /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA35B25E20FCC30A008F216C /* CoreDataManager.m */; };
+		DA3A950620FDD2000056B00E /* ColorService.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3A950420FDD2000056B00E /* ColorService.m */; };
+		DA3A950E20FDD4010056B00E /* IconService.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3A950D20FDD4010056B00E /* IconService.m */; };
+		DA3A951320FDE1180056B00E /* ListService.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3A951220FDE1180056B00E /* ListService.m */; };
+		DA3A951720FDE6F70056B00E /* TaskService.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3A951620FDE6F70056B00E /* TaskService.m */; };
+		DA3A952220FE335A0056B00E /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3A952120FE335A0056B00E /* Constants.m */; };
 		DA7C05C720F33D19008F42F7 /* ListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7C05C620F33D19008F42F7 /* ListTableViewController.m */; };
 		DA7C05CA20F33E1E008F42F7 /* ListItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7C05C920F33E1E008F42F7 /* ListItemTableViewCell.m */; };
 		DAE84BD120F5E0A50074014C /* SegmentControlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE84BD020F5E0A50074014C /* SegmentControlTableViewCell.m */; };
@@ -51,6 +56,22 @@
 		DA35B1B220FC979A008F216C /* TaskManager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaskManager.xcdatamodel; sourceTree = "<group>"; };
 		DA35B25D20FCC30A008F216C /* CoreDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
 		DA35B25E20FCC30A008F216C /* CoreDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
+		DA3A950420FDD2000056B00E /* ColorService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorService.m; sourceTree = "<group>"; };
+		DA3A950520FDD2000056B00E /* ColorService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorService.h; sourceTree = "<group>"; };
+		DA3A950820FDD22A0056B00E /* PersistentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentType.h; sourceTree = "<group>"; };
+		DA3A950C20FDD4010056B00E /* IconService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IconService.h; sourceTree = "<group>"; };
+		DA3A950D20FDD4010056B00E /* IconService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IconService.m; sourceTree = "<group>"; };
+		DA3A950F20FDD4140056B00E /* ColorServiceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorServiceProtocol.h; sourceTree = "<group>"; };
+		DA3A951020FDD4290056B00E /* IconServiceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IconServiceProtocol.h; sourceTree = "<group>"; };
+		DA3A951120FDE1180056B00E /* ListService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListService.h; sourceTree = "<group>"; };
+		DA3A951220FDE1180056B00E /* ListService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListService.m; sourceTree = "<group>"; };
+		DA3A951420FDE1280056B00E /* ListServiceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListServiceProtocol.h; sourceTree = "<group>"; };
+		DA3A951520FDE6F70056B00E /* TaskService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskService.h; sourceTree = "<group>"; };
+		DA3A951620FDE6F70056B00E /* TaskService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskService.m; sourceTree = "<group>"; };
+		DA3A951820FDE7060056B00E /* TaskServiceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskServiceProtocol.h; sourceTree = "<group>"; };
+		DA3A951F20FE13A20056B00E /* PersistentManagerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersistentManagerProtocol.h; sourceTree = "<group>"; };
+		DA3A952020FE334F0056B00E /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		DA3A952120FE335A0056B00E /* Constants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		DA7C05C520F33D19008F42F7 /* ListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListTableViewController.h; sourceTree = "<group>"; };
 		DA7C05C620F33D19008F42F7 /* ListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListTableViewController.m; sourceTree = "<group>"; };
 		DA7C05C820F33E1E008F42F7 /* ListItemTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListItemTableViewCell.h; sourceTree = "<group>"; };
@@ -132,9 +153,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DA3A950720FDD22A0056B00E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DA3A950820FDD22A0056B00E /* PersistentType.h */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		DAFD83E220FCD43600DFEA2E /* List */ = {
 			isa = PBXGroup;
 			children = (
+				DA3A951420FDE1280056B00E /* ListServiceProtocol.h */,
+				DA3A951120FDE1180056B00E /* ListService.h */,
+				DA3A951220FDE1180056B00E /* ListService.m */,
 				DAFD83E320FCD45B00DFEA2E /* ListSQLiteService.h */,
 				DAFD83E420FCD45B00DFEA2E /* ListSQLiteService.m */,
 				DAFD83F720FCE98E00DFEA2E /* ListCoreDataService.h */,
@@ -146,6 +178,9 @@
 		DAFD83E620FCD48400DFEA2E /* Task */ = {
 			isa = PBXGroup;
 			children = (
+				DA3A951820FDE7060056B00E /* TaskServiceProtocol.h */,
+				DA3A951520FDE6F70056B00E /* TaskService.h */,
+				DA3A951620FDE6F70056B00E /* TaskService.m */,
 				DAFD83E720FCD49500DFEA2E /* TaskSQLiteService.h */,
 				DAFD83E820FCD49500DFEA2E /* TaskSQLiteService.m */,
 				DAFD83F420FCE98000DFEA2E /* TaskCoreDataService.h */,
@@ -157,6 +192,9 @@
 		DAFD83EA20FCD4B900DFEA2E /* Icon */ = {
 			isa = PBXGroup;
 			children = (
+				DA3A951020FDD4290056B00E /* IconServiceProtocol.h */,
+				DA3A950C20FDD4010056B00E /* IconService.h */,
+				DA3A950D20FDD4010056B00E /* IconService.m */,
 				DAFD83EB20FCD50F00DFEA2E /* IconSQLiteService.h */,
 				DAFD83EC20FCD50F00DFEA2E /* IconSQLiteService.m */,
 				DAFD83FA20FCE99B00DFEA2E /* IconCoreDataService.h */,
@@ -168,6 +206,9 @@
 		DAFD83EE20FCD51B00DFEA2E /* Color */ = {
 			isa = PBXGroup;
 			children = (
+				DA3A950F20FDD4140056B00E /* ColorServiceProtocol.h */,
+				DA3A950520FDD2000056B00E /* ColorService.h */,
+				DA3A950420FDD2000056B00E /* ColorService.m */,
 				DAFD83EF20FCD53F00DFEA2E /* ColorSQLiteService.h */,
 				DAFD83F020FCD53F00DFEA2E /* ColorSQLiteService.m */,
 				DAFD83FD20FCE9AA00DFEA2E /* ColorCoreDataService.h */,
@@ -179,6 +220,7 @@
 		DAFD83F220FCD66B00DFEA2E /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				DA3A951F20FE13A20056B00E /* PersistentManagerProtocol.h */,
 				EFFC3BCA20F28F0D00B46116 /* DatabaseManager.h */,
 				EFFC3BCB20F28F0D00B46116 /* DatabaseManager.m */,
 				DA35B25D20FCC30A008F216C /* CoreDataManager.h */,
@@ -196,6 +238,15 @@
 				DAFD83EE20FCD51B00DFEA2E /* Color */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		DAFD840520FCF03200DFEA2E /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				DA3A952020FE334F0056B00E /* Constants.h */,
+				DA3A952120FE335A0056B00E /* Constants.m */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		EFFADD0020F09C5D00A775E6 = {
@@ -221,6 +272,8 @@
 				EFFADD0C20F09C5D00A775E6 /* AppDelegate.h */,
 				EFFADD0D20F09C5D00A775E6 /* AppDelegate.m */,
 				DA35B1B120FC979A008F216C /* TaskManager.xcdatamodeld */,
+				DA3A950720FDD22A0056B00E /* Helpers */,
+				DAFD840520FCF03200DFEA2E /* Constants */,
 				EFFADD4E20F1052600A775E6 /* Models */,
 				DAFD83F320FCE4D100DFEA2E /* Services */,
 				DAFD83F220FCD66B00DFEA2E /* Managers */,
@@ -400,6 +453,7 @@
 				DAFD83F120FCD53F00DFEA2E /* ColorSQLiteService.m in Sources */,
 				DA35B25F20FCC30A008F216C /* CoreDataManager.m in Sources */,
 				DAFD83E520FCD45B00DFEA2E /* ListSQLiteService.m in Sources */,
+				DA3A951720FDE6F70056B00E /* TaskService.m in Sources */,
 				DA7C05CA20F33E1E008F42F7 /* ListItemTableViewCell.m in Sources */,
 				DAFD83E120FCD39300DFEA2E /* Color.m in Sources */,
 				DAFD83F620FCE98000DFEA2E /* TaskCoreDataService.m in Sources */,
@@ -415,11 +469,15 @@
 				DAE84BD120F5E0A50074014C /* SegmentControlTableViewCell.m in Sources */,
 				EFFADD3C20F0D29A00A775E6 /* ColorCollectionViewCell.m in Sources */,
 				EFFADD3920F0C7A900A775E6 /* IconCollectionViewCell.m in Sources */,
+				DA3A952220FE335A0056B00E /* Constants.m in Sources */,
 				EFFADD3F20F0D44E00A775E6 /* ColorsCollectionTableViewCell.m in Sources */,
+				DA3A950E20FDD4010056B00E /* IconService.m in Sources */,
 				DAFD83FF20FCE9AA00DFEA2E /* ColorCoreDataService.m in Sources */,
 				EFFADD1C20F09C6000A775E6 /* main.m in Sources */,
+				DA3A951320FDE1180056B00E /* ListService.m in Sources */,
 				DAFD83F920FCE98E00DFEA2E /* ListCoreDataService.m in Sources */,
 				EFFC3BCC20F28F0D00B46116 /* DatabaseManager.m in Sources */,
+				DA3A950620FDD2000056B00E /* ColorService.m in Sources */,
 				EFFADD2D20F0AFC700A775E6 /* EditableTableViewCell.m in Sources */,
 				EFFADD3620F0C58200A775E6 /* CollectionTableViewCell.m in Sources */,
 				DAFD83DF20FCD39300DFEA2E /* Task.m in Sources */,

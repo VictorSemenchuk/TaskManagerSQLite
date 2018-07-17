@@ -16,6 +16,15 @@
 
 @implementation ColorSQLiteService
 
+#pragma mark - Adding
+
+- (void)addColorWithRed:(NSUInteger)red green:(NSUInteger)green blue:(NSUInteger)blue alpha:(NSUInteger)alpha colorId:(NSUInteger)colorId {
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO colors (id, red, green, blue, alpha) VALUES (%lu, %lu, %lu, %lu, %lu)", colorId, red, green, blue, alpha];
+    [DatabaseManager executeQuery:query];
+}
+
+#pragma mark - Loading
+
 - (NSMutableArray *)loadAllColors {
     NSString *query = @"SELECT * FROM colors";
     NSMutableArray *colors = [self loadDataWithQuery:query];
@@ -28,13 +37,8 @@
     return color;
 }
 
-- (void)addColorWithRed:(NSUInteger)red green:(NSUInteger)green blue:(NSUInteger)blue alpha:(NSUInteger)alpha {
-    NSString *query = [NSString stringWithFormat:@"INSERT INTO colors (red, green, blue, alpha) VALUES (%lu, %lu, %lu, %lu)", red, green, blue, alpha];
-    [DatabaseManager executeQuery:query];
-}
-
 - (NSMutableArray *)loadDataWithQuery:(NSString *)query {
-    DatabaseManager *databaseManager = [[DatabaseManager alloc] initWithDatabaseFilename:kDatabaseFilename];
+    DatabaseManager *databaseManager = [[DatabaseManager alloc] init];
     NSMutableArray *colors = [[NSMutableArray alloc] init];
     
     NSMutableArray *objects = [[NSMutableArray alloc] initWithArray:[databaseManager loadDataFromDB:query]];

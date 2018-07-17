@@ -10,6 +10,13 @@
 
 @implementation Color
 
+@synthesize colorId = _colorId;
+@synthesize red = _red;
+@synthesize green = _green;
+@synthesize blue = _blue;
+@synthesize alpha = _alpha;
+@synthesize color = _color;
+
 - (id)initWithId:(NSUInteger)colorId red:(NSUInteger)red green:(NSUInteger)green blue:(NSUInteger)blue alpha:(NSUInteger)alpha {
     self = [super init];
     if (self) {

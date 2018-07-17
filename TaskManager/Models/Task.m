@@ -10,6 +10,12 @@
 
 @implementation Task
 
+@synthesize listId = _listId;
+@synthesize taskId = _taskId;
+@synthesize text = _text;
+@synthesize isChecked = _isChecked;
+@synthesize priority = _priority;
+
 - (id)initWithId:(NSUInteger)taskId listId:(NSUInteger)listId text:(NSString *)text isChecked:(BOOL)isChecked priority:(NSUInteger)priority {
     self = [super init];
     if (self) {
