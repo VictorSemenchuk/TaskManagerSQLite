@@ -8,6 +8,7 @@
 
 #import "AddTaskTableViewController.h"
 #import "DatabaseManager.h"
+#import "UIViewController+AlertCategory.h"
 
 @implementation AddTaskTableViewController
 
@@ -23,7 +24,7 @@
 
 - (void)done {
     if ([self.text isEqualToString:@""] || self.text == nil) {
-        return;
+        [self showErrorAlertWithTitle:@"Oops" andMessage:@"Enter text for your task"];
     } else {
         DatabaseManager *databaseManager = [[DatabaseManager alloc] init];
         NSUInteger newTaskId = [databaseManager getLastIdForEntity:@"tasks"] + 1;

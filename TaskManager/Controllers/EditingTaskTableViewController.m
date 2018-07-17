@@ -8,10 +8,6 @@
 
 #import "EditingTaskTableViewController.h"
 
-@interface EditingTaskTableViewController ()
-
-@end
-
 @implementation EditingTaskTableViewController
 
 #pragma mark - Life cycle
@@ -73,6 +69,5 @@
         return cell;
     }
 }
-
 
 @end

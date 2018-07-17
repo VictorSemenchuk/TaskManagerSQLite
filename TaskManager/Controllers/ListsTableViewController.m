@@ -11,6 +11,7 @@
 #import "ListTableViewCell.h"
 #import "ListTableViewController.h"
 #import "ListService.h"
+#import "Constants.h"
 
 static NSString * const kCellIdentifier = @"CellIdentifier";
 
@@ -20,6 +21,8 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 
 - (void)setupViews;
 - (void)loadData;
+- (void)addList;
+- (void)persistentSwitchDidChange:(UISwitch *)sender;
 
 @end
 
@@ -43,6 +46,24 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 - (void)setupViews {
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Add list" style:UIBarButtonItemStylePlain target:self action:@selector(addList)];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+    
+    UISwitch *persistentSwitch = [[UISwitch alloc] init];
+    
+    PersistentType persistentType = (PersistentType)[[NSUserDefaults standardUserDefaults] integerForKey:kPersistantTypeUserDefaultsKey];
+    switch (persistentType) {
+        case kSQLite:
+            [persistentSwitch setOn:NO];
+            break;
+        case kCoreData:
+            [persistentSwitch setOn:YES];
+            break;
+        default:
+            break;
+    }
+    
+    [persistentSwitch addTarget:self action:@selector(persistentSwitchDidChange:) forControlEvents:UIControlEventValueChanged];
+    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:persistentSwitch];
+    self.navigationItem.leftBarButtonItem = leftBarButtonItem;
 }
 
 - (void)loadData {
@@ -65,6 +86,15 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
     NewListTableViewController *vc = [[NewListTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)persistentSwitchDidChange:(UISwitch *)sender {
+    if (sender.on) {
+        [[NSUserDefaults standardUserDefaults] setInteger:kCoreData forKey:kPersistantTypeUserDefaultsKey];
+    } else {
+        [[NSUserDefaults standardUserDefaults] setInteger:kSQLite forKey:kPersistantTypeUserDefaultsKey];
+    }
+    [self loadData];
 }
 
 #pragma mark - Table view data source

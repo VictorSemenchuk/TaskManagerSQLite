@@ -14,6 +14,7 @@
 #import "ColorService.h"
 #import "IconService.h"
 #import "Constants.h"
+#import "UIViewController+AlertCategory.h"
 
 static NSString * const kNameCellIdentifier = @"NameCellIdentifier";
 static NSString * const kIconsCollectionCellIdentifier = @"IconsCollectionCellIdentifier";
@@ -30,7 +31,6 @@ static NSString * const kColorsCollectionCellIdentifier = @"ColorsCollectionCell
 - (void)loadData;
 - (void)setupViews;
 - (void)done;
-- (void)showErrorAlert;
 
 @end
 
@@ -74,20 +74,11 @@ static NSString * const kColorsCollectionCellIdentifier = @"ColorsCollectionCell
     [self.tableView reloadData];
 }
 
-- (void)showErrorAlert {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops" message:@"Please, enter title for list" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        //hide alert controller
-    }];
-    [alertController addAction:cancelAction];
-    [self presentViewController:alertController animated:YES completion:nil];
-}
-
 #pragma mark - Target methods
 
 - (void)done {
     if ([self.listTitle isEqualToString: @""] || self.listTitle == nil) {
-        return;
+        [self showErrorAlertWithTitle:@"Oops" andMessage:@"Please, enter title for list"];
     } else {
         ListService *listService = [[ListService alloc] init];
         NSUInteger newListId = [listService addNewListWithTitle:self.listTitle iconId:self.selectedIconId colorId:self.selectedColorId];
@@ -107,25 +98,29 @@ static NSString * const kColorsCollectionCellIdentifier = @"ColorsCollectionCell
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (indexPath.section == 0) {
-        EditableTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kNameCellIdentifier forIndexPath:indexPath];
-        cell.delegate = self;
-        return cell;
-    } else if (indexPath.section == 1) {
-        IconsCollectionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kIconsCollectionCellIdentifier forIndexPath:indexPath];
-        [cell installObjects:self.icons];
-        cell.delegate = self;
-        return cell;
-    } else if (indexPath.section == 2) {
-        ColorsCollectionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kColorsCollectionCellIdentifier forIndexPath:indexPath];
-        [cell installObjects:self.colors];
-        cell.delegate = self;
-        return cell;
+    switch (indexPath.section) {
+        case 0: {
+            EditableTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kNameCellIdentifier forIndexPath:indexPath];
+            cell.delegate = self;
+            return cell;
+        }
+        case 1: {
+            IconsCollectionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kIconsCollectionCellIdentifier forIndexPath:indexPath];
+            [cell installObjects:self.icons];
+            cell.delegate = self;
+            return cell;
+        }
+        case 2: {
+            ColorsCollectionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kColorsCollectionCellIdentifier forIndexPath:indexPath];
+            [cell installObjects:self.colors];
+            cell.delegate = self;
+            return cell;
+        }
+        default: {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            return cell;
+        }
     }
- 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

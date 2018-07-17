@@ -7,6 +7,7 @@
 //
 
 #import "EditTaskTableViewController.h"
+#import "UIViewController+AlertCategory.h"
 
 @interface EditTaskTableViewController ()
 
@@ -36,7 +37,7 @@
 
 - (void)done {
     if ([self.text isEqualToString:@""] || self.text == nil) {
-        return;
+        [self showErrorAlertWithTitle:@"Oops" andMessage:@"Enter text for your task"];
     } else {
         TaskService *taskService = [[TaskService alloc] init];
         [taskService updateTaskWithId:self.task.taskId text:self.text priority:self.priority];

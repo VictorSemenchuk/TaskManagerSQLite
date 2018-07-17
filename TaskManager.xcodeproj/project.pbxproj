@@ -15,6 +15,7 @@
 		DA3A951320FDE1180056B00E /* ListService.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3A951220FDE1180056B00E /* ListService.m */; };
 		DA3A951720FDE6F70056B00E /* TaskService.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3A951620FDE6F70056B00E /* TaskService.m */; };
 		DA3A952220FE335A0056B00E /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3A952120FE335A0056B00E /* Constants.m */; };
+		DA3A952920FE4D080056B00E /* UIViewController+AlertCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3A952820FE4D080056B00E /* UIViewController+AlertCategory.m */; };
 		DA7C05C720F33D19008F42F7 /* ListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7C05C620F33D19008F42F7 /* ListTableViewController.m */; };
 		DA7C05CA20F33E1E008F42F7 /* ListItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7C05C920F33E1E008F42F7 /* ListItemTableViewCell.m */; };
 		DAE84BD120F5E0A50074014C /* SegmentControlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE84BD020F5E0A50074014C /* SegmentControlTableViewCell.m */; };
@@ -72,6 +73,8 @@
 		DA3A951F20FE13A20056B00E /* PersistentManagerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersistentManagerProtocol.h; sourceTree = "<group>"; };
 		DA3A952020FE334F0056B00E /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DA3A952120FE335A0056B00E /* Constants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		DA3A952720FE4D080056B00E /* UIViewController+AlertCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AlertCategory.h"; sourceTree = "<group>"; };
+		DA3A952820FE4D080056B00E /* UIViewController+AlertCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AlertCategory.m"; sourceTree = "<group>"; };
 		DA7C05C520F33D19008F42F7 /* ListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListTableViewController.h; sourceTree = "<group>"; };
 		DA7C05C620F33D19008F42F7 /* ListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListTableViewController.m; sourceTree = "<group>"; };
 		DA7C05C820F33E1E008F42F7 /* ListItemTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListItemTableViewCell.h; sourceTree = "<group>"; };
@@ -159,6 +162,15 @@
 				DA3A950820FDD22A0056B00E /* PersistentType.h */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		DA3A952320FE4CBB0056B00E /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				DA3A952720FE4D080056B00E /* UIViewController+AlertCategory.h */,
+				DA3A952820FE4D080056B00E /* UIViewController+AlertCategory.m */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		DAFD83E220FCD43600DFEA2E /* List */ = {
@@ -272,6 +284,7 @@
 				EFFADD0C20F09C5D00A775E6 /* AppDelegate.h */,
 				EFFADD0D20F09C5D00A775E6 /* AppDelegate.m */,
 				DA35B1B120FC979A008F216C /* TaskManager.xcdatamodeld */,
+				DA3A952320FE4CBB0056B00E /* Categories */,
 				DA3A950720FDD22A0056B00E /* Helpers */,
 				DAFD840520FCF03200DFEA2E /* Constants */,
 				EFFADD4E20F1052600A775E6 /* Models */,
@@ -483,6 +496,7 @@
 				DAFD83DF20FCD39300DFEA2E /* Task.m in Sources */,
 				EFFADD4D20F1020A00A775E6 /* ListTableViewCell.m in Sources */,
 				EFFADD0E20F09C5D00A775E6 /* AppDelegate.m in Sources */,
+				DA3A952920FE4D080056B00E /* UIViewController+AlertCategory.m in Sources */,
 				DAE84BDA20F5E0C80074014C /* EditTaskTableViewController.m in Sources */,
 				DAE84BD920F5E0C80074014C /* EditingTaskTableViewController.m in Sources */,
 				DAFD83DE20FCD39300DFEA2E /* List.m in Sources */,

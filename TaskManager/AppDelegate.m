@@ -20,7 +20,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [[NSUserDefaults standardUserDefaults] setInteger:kCoreData forKey:kPersistantTypeUserDefaultsKey];
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:kPersistantTypeUserDefaultsKey]) {
+        [[NSUserDefaults standardUserDefaults] setInteger:kSQLite forKey:kPersistantTypeUserDefaultsKey];
+    }
     
     CGRect frame = UIScreen.mainScreen.bounds;
     UIWindow *window = [[UIWindow alloc] initWithFrame:frame];
