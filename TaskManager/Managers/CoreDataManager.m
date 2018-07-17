@@ -100,7 +100,7 @@ static NSString * const kModelName = @"TaskManager";
     NSArray *objects = [context executeFetchRequest:request error:&error];
     
     if ([objects count] != 0) {
-        maxId = [[objects.firstObject valueForKey:[@"listIdVS" stringByAppendingString:kAttributesPostfix]] integerValue];
+        maxId = [[objects.firstObject valueForKey:[@"listId" stringByAppendingString:kAttributesPostfix]] integerValue];
     }
     
     return maxId;
