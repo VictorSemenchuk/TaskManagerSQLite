@@ -50,6 +50,7 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
     UISwitch *persistentSwitch = [[UISwitch alloc] init];
     
     PersistentType persistentType = (PersistentType)[[NSUserDefaults standardUserDefaults] integerForKey:kPersistantTypeUserDefaultsKey];
+    NSLog(@"PERSISTENT TYPE: %d", persistentType);
     switch (persistentType) {
         case kSQLite:
             [persistentSwitch setOn:NO];

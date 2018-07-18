@@ -12,8 +12,10 @@
 
 @interface CoreDataManager : NSObject <PersistentManagerProtocol>
 
-@property (nonatomic) NSManagedObjectContext *managedObjectContext;
-
 - (void)fillInitialData;
+- (NSArray *)fetchEntitiesWithName:(NSString *)entityName byPredicate:(NSPredicate *)predicate;
+- (NSUInteger)addNewInstanceForEntityWithName:(NSString *)entityName withAssigningBlock:(void(^)(NSManagedObject *currentEntity, NSUInteger currentEntityId))assigningBlock;
+- (int)removeEntityWithName:(NSString *)entityName byPredicate:(NSPredicate *)predicate;
+- (void)updateEntityWithName:(NSString *)entityName byPredicate:(NSPredicate *)predicate withUpdatingBlock:(void(^)(NSManagedObject *object))updatingBlock;
 
 @end
