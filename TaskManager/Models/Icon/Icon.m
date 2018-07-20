@@ -10,14 +10,20 @@
 
 @implementation Icon
 
-@synthesize iconId = _iconId;
-@synthesize path = _path;
-
-- (id)initWithId:(NSUInteger)iconId andPath:(NSString *)path {
+- (instancetype)initWithId:(NSUInteger)iconId andPath:(NSString *)path {
     self = [super init];
     if (self) {
         _iconId = iconId;
         _path = path;
+    }
+    return self;
+}
+
+- (instancetype)initWithMO:(IconCoreData *)iconMO {
+    self = [super init];
+    if (self) {
+        _iconId = iconMO.iconId;
+        _path = iconMO.path;
     }
     return self;
 }

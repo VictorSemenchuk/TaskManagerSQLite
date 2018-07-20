@@ -93,7 +93,7 @@ static NSString * const kModelName = @"TaskManager";
     NSManagedObjectContext *context = coreDataManager.managedObjectContext;
     
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:[NSString stringWithFormat:@"%@", entity]];
-    NSString *attribute = [NSString stringWithFormat:@"%@Id%@", [entity lowercaseString], kAttributesPostfix];
+    NSString *attribute = [NSString stringWithFormat:@"%@Id", [entity lowercaseString]];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == max(%K)", attribute, attribute];
     [request setPredicate:predicate];
     
@@ -101,7 +101,7 @@ static NSString * const kModelName = @"TaskManager";
     NSArray *objects = [context executeFetchRequest:request error:&error];
     
     if ([objects count] != 0) {
-        maxId = [[objects.firstObject valueForKey:[@"listId" stringByAppendingString:kAttributesPostfix]] integerValue];
+        maxId = [[objects.firstObject valueForKey:attribute] integerValue];
     }
     
     return maxId;
@@ -110,7 +110,7 @@ static NSString * const kModelName = @"TaskManager";
 #pragma mark - Operations
 
 - (NSArray *)fetchEntitiesWithName:(NSString *)entityName byPredicate:(NSPredicate *)predicate {
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
     if (predicate) {
         [request setPredicate:predicate];
     }
@@ -123,10 +123,10 @@ static NSString * const kModelName = @"TaskManager";
     }
 }
 
-- (NSUInteger)addNewInstanceForEntityWithName:(NSString *)entityName withAssigningBlock:(void (^)(NSManagedObject *currentEntity, NSUInteger currentEntityId))assigningBlock {
+- (NSUInteger)addNewInstanceForEntityWithName:(NSString *)entityName withAssigningBlock:(void (^)(NSManagedObject *currentEntity, NSUInteger currentEntityId, NSManagedObjectContext *context))assigningBlock {
     NSUInteger currentEntityId = [self getLastIdForEntity:entityName] + 1;
     NSManagedObject *currentEntity = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:self.managedObjectContext];
-    assigningBlock(currentEntity, currentEntityId);
+    assigningBlock(currentEntity, currentEntityId, self.managedObjectContext);
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
@@ -160,6 +160,5 @@ static NSString * const kModelName = @"TaskManager";
         }
     }
 }
-
 
 @end

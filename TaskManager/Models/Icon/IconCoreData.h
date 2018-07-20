@@ -1,19 +1,16 @@
 //
-//  Icon.h
+//  IconCoreData.h
 //  TaskManager
 //
-//  Created by Viktar Semianchuk on 7/9/18.
+//  Created by Viktar Semianchuk on 7/20/18.
 //  Copyright © 2018 Victor Semenchuk. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@interface Icon : NSManagedObject
+@interface IconCoreData : NSManagedObject
 
 @property (assign, nonatomic) NSUInteger iconId;
 @property (nonatomic) NSString *path;
-
-- (id)initWithId:(NSUInteger)iconId andPath:(NSString *)path;
 
 @end

@@ -11,5 +11,6 @@
 
 @interface IconCoreDataService : NSObject <IconServiceProtocol>
 
+- (IconCoreData *)fetchIconWithId:(NSUInteger)iconId inContext:(NSManagedObjectContext *)context;
 
 @end

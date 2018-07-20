@@ -10,15 +10,7 @@
 
 @implementation List
 
-@synthesize listId = _listId;
-@synthesize title = _title;
-@synthesize iconId = _iconId;
-@synthesize colorId = _colorId;
-@synthesize uncheckedTasksCount = _uncheckedTasksCount;
-@synthesize color = _color;
-@synthesize icon = _icon;
-
-- (id)initWithId:(NSUInteger)listId title:(NSString *)title iconId:(NSUInteger)iconId colorId:(NSUInteger)colorId {
+- (instancetype)initWithId:(NSUInteger)listId title:(NSString *)title iconId:(NSUInteger)iconId colorId:(NSUInteger)colorId {
     self = [super init];
     if (self) {
         _listId = listId;
@@ -27,6 +19,17 @@
         _colorId = colorId;
         
         _uncheckedTasksCount = 0;
+    }
+    return self;
+}
+
+- (instancetype)initWithMO:(ListCoreData *)listMO {
+    self = [super init];
+    if (self) {
+        _listId = listMO.listId;
+        _title = listMO.title;
+        _iconId = listMO.iconId;
+        _colorId = listMO.colorId;
     }
     return self;
 }

@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "ListServiceProtocol.h"
+#import "ListCoreData.h"
 
 @interface ListCoreDataService : NSObject <ListServiceProtocol>
+
+- (ListCoreData *)fetchListWithId:(NSUInteger)listId inContext:(NSManagedObjectContext *)context;
 
 @end

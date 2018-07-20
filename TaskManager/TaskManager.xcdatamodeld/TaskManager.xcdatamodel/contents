@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
-    <entity name="Color" representedClassName="Color" syncable="YES">
-        <attribute name="alphaVS" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="blueVS" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="colorIdVS" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="greenVS" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="redVS" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    <entity name="Color" representedClassName="ColorCoreData" syncable="YES">
+        <attribute name="alpha" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="blue" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="colorId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="green" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="red" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
-    <entity name="Icon" representedClassName="Icon" syncable="YES">
-        <attribute name="iconIdVS" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="pathVS" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="Icon" representedClassName="IconCoreData" syncable="YES">
+        <attribute name="iconId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="List" representedClassName="List" syncable="YES">
-        <attribute name="colorIdVS" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="iconIdVS" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="listIdVS" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="titleVS" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="colorVS" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Color" syncable="YES"/>
-        <relationship name="iconVS" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Icon" syncable="YES"/>
+    <entity name="List" representedClassName="ListCoreData" syncable="YES">
+        <attribute name="colorId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="iconId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="listId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="color" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Color" syncable="YES"/>
+        <relationship name="icon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Icon" syncable="YES"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="list" inverseEntity="Task" syncable="YES"/>
     </entity>
-    <entity name="Task" representedClassName="Task" syncable="YES">
-        <attribute name="isCheckedVS" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="listIdVS" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="priorityVS" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="taskIdVS" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="textVS" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="listVS" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="List" syncable="YES"/>
+    <entity name="Task" representedClassName="TaskCoreData" syncable="YES">
+        <attribute name="isChecked" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="listId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="priority" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="taskId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="List" inverseName="tasks" inverseEntity="List" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Color" positionX="232" positionY="198" width="128" height="120"/>
-        <element name="Icon" positionX="-180" positionY="192" width="128" height="75"/>
-        <element name="List" positionX="45" positionY="108" width="128" height="135"/>
-        <element name="Task" positionX="-290" positionY="27" width="128" height="135"/>
+        <element name="Color" positionX="180" positionY="198" width="128" height="120"/>
+        <element name="Icon" positionX="153" positionY="-66" width="128" height="75"/>
+        <element name="List" positionX="-54" positionY="24" width="128" height="148"/>
+        <element name="Task" positionX="-288" positionY="105" width="128" height="133"/>
     </elements>
 </model>

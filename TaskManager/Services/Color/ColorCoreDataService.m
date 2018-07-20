@@ -16,12 +16,12 @@
 
 - (void)addColorWithRed:(NSUInteger)red green:(NSUInteger)green blue:(NSUInteger)blue alpha:(NSUInteger)alpha colorId:(NSUInteger)colorId {
     CoreDataManager *coreDataManager = [[CoreDataManager alloc] init];
-    [coreDataManager addNewInstanceForEntityWithName:kColorEntity withAssigningBlock:^(NSManagedObject *currentEntity, NSUInteger currentEntityId) {
-        [currentEntity setValue:[NSNumber numberWithInteger:colorId] forKey:[@"colorId" stringByAppendingString:kAttributesPostfix]];
-        [currentEntity setValue:[NSNumber numberWithInteger:red] forKey:[@"red" stringByAppendingString:kAttributesPostfix]];
-        [currentEntity setValue:[NSNumber numberWithInteger:green] forKey:[@"green" stringByAppendingString:kAttributesPostfix]];
-        [currentEntity setValue:[NSNumber numberWithInteger:blue] forKey:[@"blue" stringByAppendingString:kAttributesPostfix]];
-        [currentEntity setValue:[NSNumber numberWithInteger:alpha] forKey:[@"alpha" stringByAppendingString:kAttributesPostfix]];
+    [coreDataManager addNewInstanceForEntityWithName:kColorEntity withAssigningBlock:^(NSManagedObject *currentEntity, NSUInteger currentEntityId, NSManagedObjectContext *context) {
+        [currentEntity setValue:[NSNumber numberWithInteger:colorId] forKey:@"colorId"];
+        [currentEntity setValue:[NSNumber numberWithInteger:red] forKey:@"red"];
+        [currentEntity setValue:[NSNumber numberWithInteger:green] forKey:@"green"];
+        [currentEntity setValue:[NSNumber numberWithInteger:blue] forKey:@"blue"];
+        [currentEntity setValue:[NSNumber numberWithInteger:alpha] forKey:@"alpha"];
     }];
 }
 
@@ -32,13 +32,8 @@
     CoreDataManager *coreDataManager = [[CoreDataManager alloc] init];
     NSArray *results = [coreDataManager fetchEntitiesWithName:kColorEntity byPredicate:nil];
     if (results) {
-        for (int i = 0; i < [results count]; i++) {
-            NSUInteger colorId = [[results[i] valueForKey:[@"colorId" stringByAppendingString:kAttributesPostfix]] integerValue];
-            NSUInteger red = [[results[i] valueForKey:[@"red" stringByAppendingString:kAttributesPostfix]] integerValue];
-            NSUInteger green = [[results[i] valueForKey:[@"green" stringByAppendingString:kAttributesPostfix]] integerValue];
-            NSUInteger blue = [[results[i] valueForKey:[@"blue" stringByAppendingString:kAttributesPostfix]] integerValue];
-            NSUInteger alpha = [[results[i] valueForKey:[@"alpha" stringByAppendingString:kAttributesPostfix]] integerValue];
-            Color *color = [[Color alloc] initWithId:colorId red:red green:green blue:blue alpha:alpha];
+        for (ColorCoreData *colorMO in results) {
+            Color *color = [[Color alloc] initWithMO:colorMO];
             [colors addObject:color];
         }
     }
@@ -48,16 +43,24 @@
 - (Color *)loadColorWithId:(NSUInteger)colorId {
     Color *color = [[Color alloc] init];
     CoreDataManager *coreDataManager = [[CoreDataManager alloc] init];
-    NSString *attribute = [NSString stringWithFormat:@"colorId%@", kAttributesPostfix];
+    NSString *attribute = [NSString stringWithFormat:@"colorId"];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %lu", attribute, colorId];
     NSArray *results = [coreDataManager fetchEntitiesWithName:kColorEntity byPredicate:predicate];
     if (results) {
-            NSUInteger colorId = [[results.firstObject valueForKey:[@"colorId" stringByAppendingString:kAttributesPostfix]] integerValue];
-            NSUInteger red = [[results.firstObject valueForKey:[@"red" stringByAppendingString:kAttributesPostfix]] integerValue];
-            NSUInteger green = [[results.firstObject valueForKey:[@"green" stringByAppendingString:kAttributesPostfix]] integerValue];
-            NSUInteger blue = [[results.firstObject valueForKey:[@"blue" stringByAppendingString:kAttributesPostfix]] integerValue];
-            NSUInteger alpha = [[results.firstObject valueForKey:[@"alpha" stringByAppendingString:kAttributesPostfix]] integerValue];
-            color = [[Color alloc] initWithId:colorId red:red green:green blue:blue alpha:alpha];
+            ColorCoreData *colorMO = results.firstObject;
+            color = [[Color alloc] initWithMO:colorMO];
+    }
+    return color;
+}
+
+- (ColorCoreData *)fetchColorWithId:(NSUInteger)colorId inContext:(NSManagedObjectContext *)context {
+    ColorCoreData *color = nil;
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:kColorEntity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"colorId == %lu", colorId];
+    [request setPredicate:predicate];
+    NSArray *results = [context executeFetchRequest:request error:nil];
+    if (results) {
+        color = results.firstObject;
     }
     return color;
 }

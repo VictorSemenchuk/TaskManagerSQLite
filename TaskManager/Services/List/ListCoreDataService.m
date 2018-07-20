@@ -21,20 +21,14 @@
     CoreDataManager *coreDataManager = [[CoreDataManager alloc] init];
     NSArray *results = [coreDataManager fetchEntitiesWithName:kListEntity byPredicate:nil];
     if (results) {
-        for (int i = 0; i < [results count]; i++) {
-            NSUInteger listId = [[results[i] valueForKey:[@"listId" stringByAppendingString:kAttributesPostfix]] integerValue];
-            NSString *title = [results[i] valueForKey:[@"title" stringByAppendingString:kAttributesPostfix]];
-            NSUInteger iconId = [[results[i] valueForKey:[@"iconId" stringByAppendingString:kAttributesPostfix]] integerValue];
-            NSUInteger colorId = [[results[i] valueForKey:[@"colorId" stringByAppendingString:kAttributesPostfix]] integerValue];
-            List *list = [[List alloc] initWithId:listId title:title iconId:iconId colorId:colorId];
+        for (ListCoreData *listMO in results) {
+            List *list = [[List alloc] initWithMO:listMO];
             
-            ColorService *colorService = [[ColorService alloc] init];
-            Color *color = [colorService loadColorWithId:colorId];
-            list.color = color;
-            
-            IconService *iconService = [[IconService alloc] init];
-            Icon *icon = [iconService loadIconWithId:iconId];
+            Icon *icon = [[Icon alloc] initWithMO:listMO.icon];
             list.icon = icon;
+            
+            Color *color = [[Color alloc] initWithMO:listMO.color];
+            list.color = color;
             
             [lists addObject:list];
         }
@@ -45,23 +39,30 @@
 - (List *)loadListWithId:(NSUInteger)listId {
     List *list = [[List alloc] init];
     CoreDataManager *coreDataManager = [[CoreDataManager alloc] init];
-    NSString *attribute = [NSString stringWithFormat:@"listId%@", kAttributesPostfix];
+    NSString *attribute = [NSString stringWithFormat:@"listId"];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %lu", attribute, listId];
     NSArray *results = [coreDataManager fetchEntitiesWithName:kListEntity byPredicate:predicate];
     if (results) {
-        NSUInteger listId = [[results.firstObject valueForKey:[@"listId" stringByAppendingString:kAttributesPostfix]] integerValue];
-        NSString *title = [results.firstObject valueForKey:[@"title" stringByAppendingString:kAttributesPostfix]];
-        NSUInteger iconId = [[results.firstObject valueForKey:[@"iconId" stringByAppendingString:kAttributesPostfix]] integerValue];
-        NSUInteger colorId = [[results.firstObject valueForKey:[@"colorId" stringByAppendingString:kAttributesPostfix]] integerValue];
-        list = [[List alloc] initWithId:listId title:title iconId:iconId colorId:colorId];
+        ListCoreData *listMO = results.firstObject;
+        list = [[List alloc] initWithMO:listMO];
         
-        ColorService *colorService = [[ColorService alloc] init];
-        Color *color = [colorService loadColorWithId:colorId];
-        list.color = color;
-        
-        IconService *iconService = [[IconService alloc] init];
-        Icon *icon = [iconService loadIconWithId:iconId];
+        Icon *icon = [[Icon alloc] initWithMO:listMO.icon];
         list.icon = icon;
+        
+        Color *color = [[Color alloc] initWithMO:listMO.color];
+        list.color = color;
+    }
+    return list;
+}
+
+- (ListCoreData *)fetchListWithId:(NSUInteger)listId inContext:(NSManagedObjectContext *)context {
+    ListCoreData *list = nil;
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:kListEntity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"listId == %lu", listId];
+    [request setPredicate: predicate];
+    NSArray *results = [context executeFetchRequest:request error:nil];
+    if (results) {
+        list = [results firstObject];
     }
     return list;
 }
@@ -71,11 +72,19 @@
 - (NSUInteger)addNewListWithTitle:(NSString *)title iconId:(NSUInteger)iconId colorId:(NSUInteger)colorId {
     CoreDataManager *coreDataManager = [[CoreDataManager alloc] init];
     NSUInteger listId = 0;
-    listId = [coreDataManager addNewInstanceForEntityWithName:kListEntity withAssigningBlock:^(NSManagedObject *currentEntity, NSUInteger currentEntityId) {
-        [currentEntity setValue:[NSNumber numberWithInteger:currentEntityId] forKey:[@"listId" stringByAppendingString:kAttributesPostfix]];
-        [currentEntity setValue:title forKey:[@"title" stringByAppendingString:kAttributesPostfix]];
-        [currentEntity setValue:[NSNumber numberWithInteger:iconId] forKey:[@"iconId" stringByAppendingString:kAttributesPostfix]];
-        [currentEntity setValue:[NSNumber numberWithInteger:colorId] forKey:[@"colorId" stringByAppendingString:kAttributesPostfix]];
+    listId = [coreDataManager addNewInstanceForEntityWithName:kListEntity withAssigningBlock:^(NSManagedObject *currentEntity, NSUInteger currentEntityId, NSManagedObjectContext *context) {
+        [currentEntity setValue:[NSNumber numberWithInteger:currentEntityId] forKey:@"listId"];
+        [currentEntity setValue:title forKey:@"title"];
+        [currentEntity setValue:[NSNumber numberWithInteger:iconId] forKey:@"iconId"];
+        [currentEntity setValue:[NSNumber numberWithInteger:colorId] forKey:@"colorId"];
+        
+        IconCoreDataService *iconCoreDataService = [[IconCoreDataService alloc] init];
+        IconCoreData *icon = [iconCoreDataService fetchIconWithId:iconId inContext:context];
+        [currentEntity setValue:icon forKey:@"icon"];
+        
+        ColorCoreDataService *colorCoreDataService = [[ColorCoreDataService alloc] init];
+        ColorCoreData *color = [colorCoreDataService fetchColorWithId:colorId inContext:context];
+        [currentEntity setValue:color forKey:@"color"];
     }];
     return listId;
 }
@@ -84,7 +93,7 @@
 
 - (void)removeListWithId:(NSUInteger)listId {
     CoreDataManager *coreDataManager = [[CoreDataManager alloc] init];
-    NSString *attribute = [NSString stringWithFormat:@"listId%@", kAttributesPostfix];
+    NSString *attribute = [NSString stringWithFormat:@"listId"];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %lu", attribute, listId];
     int resultCode = [coreDataManager removeEntityWithName:kListEntity byPredicate:predicate];
     if (resultCode == 0) {
@@ -97,8 +106,8 @@
 - (NSInteger)getCountUncheckedTasksForListId:(NSUInteger)listId { 
     NSUInteger count = 0;
     CoreDataManager *coreDataManager = [[CoreDataManager alloc] init];
-    NSString *firstAttribute = [NSString stringWithFormat:@"listId%@", kAttributesPostfix];
-    NSString *secondAttribute = [NSString stringWithFormat:@"isChecked%@", kAttributesPostfix];
+    NSString *firstAttribute = [NSString stringWithFormat:@"listId"];
+    NSString *secondAttribute = [NSString stringWithFormat:@"isChecked"];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(%K == %lu) AND (%K == %d)", firstAttribute, listId, secondAttribute, NO];
     NSArray *results = [coreDataManager fetchEntitiesWithName:kTaskEntity byPredicate:predicate];
     if (results) {

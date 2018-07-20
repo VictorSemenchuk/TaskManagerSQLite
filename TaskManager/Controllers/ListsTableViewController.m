@@ -33,12 +33,11 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self loadData];
-    
     self.title = @"Lists";
     [self.tableView registerClass:ListTableViewCell.class forCellReuseIdentifier:kCellIdentifier];
     
     [self setupViews];
+    [self loadData];
 }
 
 #pragma mark - Methods

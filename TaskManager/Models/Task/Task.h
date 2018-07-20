@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "TaskCoreData.h"
 
-@interface Task : NSManagedObject
+@interface Task : NSObject
 
 @property (assign, nonatomic) NSUInteger taskId;
 @property (assign, nonatomic) NSUInteger listId;
@@ -17,6 +17,7 @@
 @property (assign, nonatomic) BOOL isChecked;
 @property (assign, nonatomic) NSUInteger priority;
 
-- (id)initWithId:(NSUInteger)taskId listId:(NSUInteger)listId text:(NSString *)text isChecked:(BOOL)isChecked priority:(NSUInteger)priority;
+- (instancetype)initWithId:(NSUInteger)taskId listId:(NSUInteger)listId text:(NSString *)text isChecked:(BOOL)isChecked priority:(NSUInteger)priority;
+- (instancetype)initWithMO:(TaskCoreData *)taskMO;
 
 @end

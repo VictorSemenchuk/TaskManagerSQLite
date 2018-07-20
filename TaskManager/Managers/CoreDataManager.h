@@ -14,7 +14,7 @@
 
 - (void)fillInitialData;
 - (NSArray *)fetchEntitiesWithName:(NSString *)entityName byPredicate:(NSPredicate *)predicate;
-- (NSUInteger)addNewInstanceForEntityWithName:(NSString *)entityName withAssigningBlock:(void(^)(NSManagedObject *currentEntity, NSUInteger currentEntityId))assigningBlock;
+- (NSUInteger)addNewInstanceForEntityWithName:(NSString *)entityName withAssigningBlock:(void (^)(NSManagedObject *currentEntity, NSUInteger currentEntityId, NSManagedObjectContext *context))assigningBlock;
 - (int)removeEntityWithName:(NSString *)entityName byPredicate:(NSPredicate *)predicate;
 - (void)updateEntityWithName:(NSString *)entityName byPredicate:(NSPredicate *)predicate withUpdatingBlock:(void(^)(NSManagedObject *object))updatingBlock;
 

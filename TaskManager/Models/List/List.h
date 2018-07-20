@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
 #import "Icon.h"
 #import "Color.h"
+#import "TaskCoreData.h"
 
-@interface List : NSManagedObject
+@interface List : NSObject
 
 @property (assign, nonatomic) NSUInteger listId;
 @property (nonatomic) NSString *title;
@@ -24,6 +24,7 @@
 @property (nonatomic) Icon *icon;
 @property (nonatomic) Color *color;
 
-- (id)initWithId:(NSUInteger)listId title:(NSString *)title iconId:(NSUInteger)iconId colorId:(NSUInteger)colorId;
+- (instancetype)initWithId:(NSUInteger)listId title:(NSString *)title iconId:(NSUInteger)iconId colorId:(NSUInteger)colorId;
+- (instancetype)initWithMO:(ListCoreData *)listMO;
 
 @end

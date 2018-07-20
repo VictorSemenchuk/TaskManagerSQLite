@@ -12,4 +12,6 @@
 
 @interface ColorCoreDataService : NSObject <ColorServiceProtocol>
 
+- (ColorCoreData *)fetchColorWithId:(NSUInteger)colorId inContext:(NSManagedObjectContext *)context;
+
 @end

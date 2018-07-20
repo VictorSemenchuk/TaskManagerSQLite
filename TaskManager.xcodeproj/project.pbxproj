@@ -16,6 +16,10 @@
 		DA3A951720FDE6F70056B00E /* TaskService.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3A951620FDE6F70056B00E /* TaskService.m */; };
 		DA3A952220FE335A0056B00E /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3A952120FE335A0056B00E /* Constants.m */; };
 		DA3A952920FE4D080056B00E /* UIViewController+AlertCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3A952820FE4D080056B00E /* UIViewController+AlertCategory.m */; };
+		DA4E7F742101D42800FC9068 /* IconCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E7F732101D42800FC9068 /* IconCoreData.m */; };
+		DA4E7F782101D56E00FC9068 /* TaskCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E7F772101D56E00FC9068 /* TaskCoreData.m */; };
+		DA4E7F7C2101D58600FC9068 /* ListCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E7F7B2101D58600FC9068 /* ListCoreData.m */; };
+		DA4E7F802101D5A500FC9068 /* ColorCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4E7F7F2101D5A500FC9068 /* ColorCoreData.m */; };
 		DA7C05C720F33D19008F42F7 /* ListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7C05C620F33D19008F42F7 /* ListTableViewController.m */; };
 		DA7C05CA20F33E1E008F42F7 /* ListItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7C05C920F33E1E008F42F7 /* ListItemTableViewCell.m */; };
 		DAE84BD120F5E0A50074014C /* SegmentControlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE84BD020F5E0A50074014C /* SegmentControlTableViewCell.m */; };
@@ -75,6 +79,14 @@
 		DA3A952120FE335A0056B00E /* Constants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		DA3A952720FE4D080056B00E /* UIViewController+AlertCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AlertCategory.h"; sourceTree = "<group>"; };
 		DA3A952820FE4D080056B00E /* UIViewController+AlertCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AlertCategory.m"; sourceTree = "<group>"; };
+		DA4E7F722101D42800FC9068 /* IconCoreData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IconCoreData.h; sourceTree = "<group>"; };
+		DA4E7F732101D42800FC9068 /* IconCoreData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IconCoreData.m; sourceTree = "<group>"; };
+		DA4E7F762101D56E00FC9068 /* TaskCoreData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskCoreData.h; sourceTree = "<group>"; };
+		DA4E7F772101D56E00FC9068 /* TaskCoreData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskCoreData.m; sourceTree = "<group>"; };
+		DA4E7F7A2101D58600FC9068 /* ListCoreData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListCoreData.h; sourceTree = "<group>"; };
+		DA4E7F7B2101D58600FC9068 /* ListCoreData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListCoreData.m; sourceTree = "<group>"; };
+		DA4E7F7E2101D5A500FC9068 /* ColorCoreData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorCoreData.h; sourceTree = "<group>"; };
+		DA4E7F7F2101D5A500FC9068 /* ColorCoreData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorCoreData.m; sourceTree = "<group>"; };
 		DA7C05C520F33D19008F42F7 /* ListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListTableViewController.h; sourceTree = "<group>"; };
 		DA7C05C620F33D19008F42F7 /* ListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListTableViewController.m; sourceTree = "<group>"; };
 		DA7C05C820F33E1E008F42F7 /* ListItemTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListItemTableViewCell.h; sourceTree = "<group>"; };
@@ -171,6 +183,50 @@
 				DA3A952820FE4D080056B00E /* UIViewController+AlertCategory.m */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		DA4E7F712101D40600FC9068 /* Icon */ = {
+			isa = PBXGroup;
+			children = (
+				DAFD83D820FCD39200DFEA2E /* Icon.h */,
+				DAFD83DC20FCD39200DFEA2E /* Icon.m */,
+				DA4E7F722101D42800FC9068 /* IconCoreData.h */,
+				DA4E7F732101D42800FC9068 /* IconCoreData.m */,
+			);
+			path = Icon;
+			sourceTree = "<group>";
+		};
+		DA4E7F752101D55E00FC9068 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				DAFD83D720FCD39200DFEA2E /* Task.h */,
+				DAFD83DA20FCD39200DFEA2E /* Task.m */,
+				DA4E7F762101D56E00FC9068 /* TaskCoreData.h */,
+				DA4E7F772101D56E00FC9068 /* TaskCoreData.m */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
+		DA4E7F792101D57200FC9068 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				DAFD83DB20FCD39200DFEA2E /* List.h */,
+				DAFD83D620FCD39200DFEA2E /* List.m */,
+				DA4E7F7A2101D58600FC9068 /* ListCoreData.h */,
+				DA4E7F7B2101D58600FC9068 /* ListCoreData.m */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		DA4E7F7D2101D59300FC9068 /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				DAFD83D920FCD39200DFEA2E /* Color.h */,
+				DAFD83DD20FCD39200DFEA2E /* Color.m */,
+				DA4E7F7E2101D5A500FC9068 /* ColorCoreData.h */,
+				DA4E7F7F2101D5A500FC9068 /* ColorCoreData.m */,
+			);
+			path = Color;
 			sourceTree = "<group>";
 		};
 		DAFD83E220FCD43600DFEA2E /* List */ = {
@@ -373,14 +429,10 @@
 		EFFADD4E20F1052600A775E6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				DAFD83D720FCD39200DFEA2E /* Task.h */,
-				DAFD83DA20FCD39200DFEA2E /* Task.m */,
-				DAFD83DB20FCD39200DFEA2E /* List.h */,
-				DAFD83D620FCD39200DFEA2E /* List.m */,
-				DAFD83D820FCD39200DFEA2E /* Icon.h */,
-				DAFD83DC20FCD39200DFEA2E /* Icon.m */,
-				DAFD83D920FCD39200DFEA2E /* Color.h */,
-				DAFD83DD20FCD39200DFEA2E /* Color.m */,
+				DA4E7F752101D55E00FC9068 /* Task */,
+				DA4E7F792101D57200FC9068 /* List */,
+				DA4E7F7D2101D59300FC9068 /* Color */,
+				DA4E7F712101D40600FC9068 /* Icon */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -477,6 +529,7 @@
 				DAE84BD820F5E0C80074014C /* AddTaskTableViewController.m in Sources */,
 				DAFD83E920FCD49500DFEA2E /* TaskSQLiteService.m in Sources */,
 				DAFD83ED20FCD50F00DFEA2E /* IconSQLiteService.m in Sources */,
+				DA4E7F7C2101D58600FC9068 /* ListCoreData.m in Sources */,
 				DAFD83FC20FCE99B00DFEA2E /* IconCoreDataService.m in Sources */,
 				EFFADD3020F0C0B100A775E6 /* IconsCollectionTableViewCell.m in Sources */,
 				DAE84BD120F5E0A50074014C /* SegmentControlTableViewCell.m in Sources */,
@@ -492,6 +545,9 @@
 				EFFC3BCC20F28F0D00B46116 /* DatabaseManager.m in Sources */,
 				DA3A950620FDD2000056B00E /* ColorService.m in Sources */,
 				EFFADD2D20F0AFC700A775E6 /* EditableTableViewCell.m in Sources */,
+				DA4E7F782101D56E00FC9068 /* TaskCoreData.m in Sources */,
+				DA4E7F802101D5A500FC9068 /* ColorCoreData.m in Sources */,
+				DA4E7F742101D42800FC9068 /* IconCoreData.m in Sources */,
 				EFFADD3620F0C58200A775E6 /* CollectionTableViewCell.m in Sources */,
 				DAFD83DF20FCD39300DFEA2E /* Task.m in Sources */,
 				EFFADD4D20F1020A00A775E6 /* ListTableViewCell.m in Sources */,
